@@ -23,14 +23,21 @@ user32.GetDlgItem.argtypes = [wintypes.HWND, ctypes.c_int]
 user32.GetDlgItem.restype = wintypes.HWND
 user32.SendMessageW.argtypes = [wintypes.HWND, wintypes.UINT, wintypes.WPARAM, wintypes.LPARAM]
 user32.SendMessageW.restype = ctypes.c_ssize_t
-user32.SetWindowTextW.argtypes = [wintypes.HWND, wintypes.LPCWSTR]
-user32.GetWindowTextW.argtypes = [wintypes.HWND, wintypes.LPWSTR, ctypes.c_int]
 user32.IsWindowEnabled.argtypes = [wintypes.HWND]
 
 def text_of(handle):
     buffer = ctypes.create_unicode_buffer(2048)
-    user32.GetWindowTextW(handle, buffer, len(buffer))
+    # WM_GETTEXT marshals the buffer across processes, including edit controls.
+    user32.SendMessageW(handle, 0x000D, len(buffer), ctypes.addressof(buffer))
     return buffer.value
+
+def set_text(handle, value):
+    # SetWindowTextW cannot set another process's control text. WM_SETTEXT is
+    # marshalled by Windows for both x86 and x64 launchers; keep the buffer alive
+    # until the synchronous send returns and verify what the control received.
+    buffer = ctypes.create_unicode_buffer(value)
+    assert user32.SendMessageW(handle, 0x000C, 0, ctypes.addressof(buffer))
+    assert text_of(handle) == value
 
 # Simulate a desktop launch with no inherited console.
 child = subprocess.Popen([str(binary)], creationflags=subprocess.DETACHED_PROCESS)
@@ -66,7 +73,7 @@ try:
     with tempfile.TemporaryDirectory(prefix="cocaine-launcher-") as temporary:
         invalid_dll = Path(temporary) / "ill formit-\u00e9.dll"
         invalid_dll.write_bytes(b"not a DLL")
-        assert user32.SetWindowTextW(user32.GetDlgItem(window, 103), str(invalid_dll))
+        set_text(user32.GetDlgItem(window, 103), str(invalid_dll))
         user32.SendMessageW(window, 0x0111, 105, 0)
         deadline = time.monotonic() + 15
         while time.monotonic() < deadline:
