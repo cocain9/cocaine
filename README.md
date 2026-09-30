@@ -6,7 +6,7 @@ Ye can edit the source richt in this repository. The auld archive bides in Git h
 
 ## Build on Windows
 
-Fer a complete DLL an EXE download, see [Windows packages](docs/DOWNLOADS.md). Successful Windows Actions builds publish the package as an artifact.
+Fer commands tae build an package the DLL an EXEs, see [Windows packages](docs/DOWNLOADS.md). Automatic Actions downloads need the prepared workflow tae be published; that is currently blocked by the GitHub connection's workflow permissions.
 
 Ye need:
 

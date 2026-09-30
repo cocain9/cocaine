@@ -12,6 +12,23 @@ Extract the hale ZIP. Fer the auld Cocaine DLL, open `x86/CocaineLauncher.exe`, 
 
 ## GitHub downloads
 
+The prepared `.github/workflows/validate.yml` needs GitHub connection permission tae write workflow files afore it can be published. There is nae successful Actions DLL artifact yet.
+
+Efter the workflow is published:
+
 Open the repository's **Actions** page, chyse a successful **Validate Cocaine** rin fer the branch ye want, an download **Cocaine-Windows-Release** frae **Artifacts**. Extract that artifact, syne extract its `Cocaine-Windows-Release.zip`. GitHub may ask ye tae sign in fer artifact downloads. Debug builds are available in a sindry artifact.
 
 The workflow builds the DLL an baith tools on Windows, rins the synthetic injector an lancher smoke checks, an packages the files. Packaging fails gin the DLL or ony tool is missin or haes the wrang architecture. Artifacts are published efter those checks pass.
+
+## Build an package on yer Windows machine
+
+Install Visual Studio 2022 wi Desktop development with C++, MSVC v143 an the Windows SDK, plus Python 3. Frae a Visual Studio Developer Command Prompt in the repository folder:
+
+```bat
+msbuild Cocaine.sln /m /p:Configuration=Release /p:Platform=x86
+msbuild injector\CocaineInjector.vcxproj /m /p:Configuration=Release /p:Platform=x64
+msbuild launcher\CocaineLauncher.vcxproj /m /p:Configuration=Release /p:Platform=x64
+python tools\package_windows.py --configuration Release
+```
+
+The DLL is `output\Release\Cocaine.dll`; the complete package is `dist\Cocaine-Windows-Release.zip`. These full Windows build commands still need a successful MSVC rin; the local Linux checks cover portable code an cross-built EXE tools.
