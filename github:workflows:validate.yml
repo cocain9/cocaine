@@ -1,0 +1,44 @@
+name: Validate Cocaine
+on: [push, pull_request, workflow_dispatch]
+permissions:
+  contents: read
+jobs:
+  regression:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 tests/check_project.py
+      - run: python3 tests/check_locale.py
+      - run: python3 tests/run.py --sanitize
+  windows:
+    runs-on: windows-2022
+    strategy:
+      fail-fast: false
+      matrix:
+        configuration: [Debug, Release]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: microsoft/setup-msbuild@v2
+      - uses: ilammy/msvc-dev-cmd@v1
+        with:
+          arch: x86
+      - run: python tests/check_project.py
+      - run: python tests/check_locale.py
+      - run: python tests/run.py
+      - run: msbuild Cocaine.sln /m /p:Configuration=${{ matrix.configuration }} /p:Platform=x86
+      - run: python tests/windows_injector.py output/Win32/${{ matrix.configuration }}/CocaineInjector.exe
+      - run: python tests/windows_launcher.py output/Win32/${{ matrix.configuration }}/CocaineLauncher.exe
+      - run: msbuild injector/CocaineInjector.vcxproj /m /p:Configuration=${{ matrix.configuration }} /p:Platform=x64
+      - run: msbuild launcher/CocaineLauncher.vcxproj /m /p:Configuration=${{ matrix.configuration }} /p:Platform=x64
+      - uses: ilammy/msvc-dev-cmd@v1
+        with:
+          arch: x64
+      - run: python tests/windows_injector.py output/x64/${{ matrix.configuration }}/CocaineInjector.exe
+      - run: python tests/windows_launcher.py output/x64/${{ matrix.configuration }}/CocaineLauncher.exe
+      - name: Package DLL and Windows tools
+        run: python tools/package_windows.py --configuration ${{ matrix.configuration }}
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Cocaine-Windows-${{ matrix.configuration }}
+          path: dist/Cocaine-Windows-${{ matrix.configuration }}.zip
+          if-no-files-found: error
