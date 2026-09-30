@@ -42,7 +42,7 @@ jobs:
       - uses: microsoft/setup-msbuild@v2
 
       # ---- x86 build + tests ----
-      - uses: ilammy/msvc-dev-cmd@v1
+      - uses: ilammy/msvc-dev-cmd@0b201ec74fa43914dc39ae48a89fd1d8cb592756 # v1
         with:
           arch: x86
 
