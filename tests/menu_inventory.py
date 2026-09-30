@@ -47,7 +47,7 @@ def compact(source):
 
 
 def inventory():
-    source = without_comments((ROOT / 'menu.h').read_text())
+    source = without_comments((ROOT / 'menu.h').read_text(encoding='utf-8'))
     records = []
     for match in re.finditer(r'class (\w+) : public Tab \{([\s\S]*?)(?=\nclass |\Z)', source):
         cls, body = match.groups()
@@ -108,9 +108,9 @@ if __name__ == '__main__':
         with BASELINE.open('x') as stream:
             json.dump({'source_sha256': hashlib.sha256((ROOT / 'menu.h').read_bytes()).hexdigest(), 'controls': current}, stream, indent=2)
             stream.write('\n')
-        (ROOT / 'docs' / 'FEATURE_PARITY.md').write_text(checklist(current))
+        (ROOT / 'docs' / 'FEATURE_PARITY.md').write_text(checklist(current), encoding='utf-8')
     else:
-        baseline = json.loads(BASELINE.read_text())['controls']
+        baseline = json.loads(BASELINE.read_text(encoding='utf-8'))['controls']
         assert current == baseline, 'Menu contract changed: review controls, setup values, callbacks and visibility conditions'
-        assert (ROOT / 'docs' / 'FEATURE_PARITY.md').read_text() == checklist(current), 'Regenerate the Scots parity ticklist'
+        assert (ROOT / 'docs' / 'FEATURE_PARITY.md').read_text(encoding='utf-8') == checklist(current), 'Regenerate the Scots parity ticklist'
     print(f'Menu parity: {len(current)} controls across {len(set(r["category"] for r in current))} categories; all registrations and contracts preserved.')

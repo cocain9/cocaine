@@ -10,12 +10,16 @@ import tempfile
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--sanitize", action="store_true")
-parser.add_argument("--suite", choices=["all", "regression", "pattern", "startup", "features", "theme", "injector"], default="all")
+parser.add_argument("--suite", choices=["all", "regression", "pattern", "startup", "features", "theme", "injector", "strings", "memory"], default="all")
 parser.add_argument("--preview-dir", type=Path)
 args = parser.parse_args()
 root = Path(__file__).resolve().parents[1]
 with tempfile.TemporaryDirectory(prefix="cocaine-tests-") as temporary:
     build = Path(temporary)
+    # MSVC /I also affects <system> includes. Do not put the source root on it:
+    # our math.h would shadow the CRT math.h pulled in by <cmath>.
+    for header in ("config_store.h", "edit.h"):
+        (build / header).write_text(f'#include "{(root / header).as_posix()}"\n', encoding="utf-8")
     # Replace only the platform umbrella include; compile all Config method bodies verbatim.
     source = (root / "config.cpp").read_text()
     assert source.startswith('#include "includes.h"')
@@ -27,6 +31,14 @@ with tempfile.TemporaryDirectory(prefix="cocaine-tests-") as temporary:
     start = client.index("ulong_t __stdcall Client::init(")
     end = client.index("void Client::DrawHUD", start)
     (build / "startup_under_test.cpp").write_text(client[start:end])
+    entity = (root / "entity.h").read_text()
+    start = entity.index("__forceinline vec3_t GetBonePosition(")
+    end = entity.index("__forceinline int& m_iAccount()", start)
+    (build / "bone_position_under_test.h").write_text(entity[start:end])
+    visuals = (root / "visuals.cpp").read_text(encoding="latin-1")
+    start = visuals.index("// is this the final impact?", visuals.index("void Visuals::DrawBeams("))
+    end = visuals.index("if( is_final_impact )", start)
+    (build / "impact_boundary_under_test.cpp").write_text(visuals[start:end])
     menu = (root / "menu.h").read_text()
     anti_aim = menu[menu.index("class AntiAimTab :"):menu.index("class PlayersTab :")]
     chams_style = menu[menu.index("class ChamsStyleTab :"):menu.index("class VisualsTab :")]
@@ -50,15 +62,15 @@ with tempfile.TemporaryDirectory(prefix="cocaine-tests-") as temporary:
             source = source[:source.index(end)]
         (build / (name + "_draw_under_test.cpp")).write_text(source)
     compiler = os.environ.get("CXX", "cl" if os.name == "nt" else "g++")
-    suites = ["regression", "pattern", "startup", "features", "theme", "injector"] if args.suite == "all" else [args.suite]
+    suites = ["regression", "pattern", "startup", "features", "theme", "injector", "strings", "memory"] if args.suite == "all" else [args.suite]
     for suite in suites:
         binary = build / (suite + (".exe" if os.name == "nt" else ""))
         if os.name == "nt":
             command = [compiler, "/nologo", "/std:c++17", "/EHsc", "/W3", "/DNOMINMAX",
-                       f"/I{root}", f"/I{build}", str(root / "tests" / (suite + ".cpp")), f"/Fe:{binary}"]
+                       f"/I{build}", str(root / "tests" / (suite + ".cpp")), f"/Fe:{binary}"]
         else:
             command = [compiler, "-std=c++17", "-Wall", "-Wextra", "-Wno-deprecated-copy", "-Wno-reorder",
-                       "-iquote", str(root), "-iquote", str(build), str(root / "tests" / (suite + ".cpp")), "-o", str(binary)]
+                       "-iquote", str(build), str(root / "tests" / (suite + ".cpp")), "-o", str(binary)]
             if args.sanitize:
                 command += ["-fsanitize=address,undefined", "-fno-omit-frame-pointer", "-g"]
         subprocess.run(command, cwd=build, check=True)

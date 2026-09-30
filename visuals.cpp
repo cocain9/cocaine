@@ -1393,11 +1393,13 @@ void Visuals::DrawBeams( ) {
 
 			// is this the final impact?
 			// last impact in the vector, it's the final impact.
-			if( i == ( impact_count - 1 ) )
+			// Expired entries may already have been erased during this traversal.
+			// Check the current size before looking at the next impact.
+			if( i + 1 >= vis_impacts->size( ) )
 				is_final_impact = true;
 
 			// the current impact's tickbase is different than the next, it's the final impact.
-			else if( ( i + 1 ) < impact_count && impact->m_tickbase != vis_impacts->operator[ ]( i + 1 ).m_tickbase )
+			else if( impact->m_tickbase != vis_impacts->operator[ ]( i + 1 ).m_tickbase )
 				is_final_impact = true;
 
 			else

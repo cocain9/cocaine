@@ -33,7 +33,7 @@ Their outputs are `output\x64\Release\CocaineLauncher.exe` an `CocaineInjector.e
 
 ## Behaviour an limits
 
-- Refuses ill-formit PE heiders, files that arena DLL images, an architecture mismatches afore allocatin target memory.
+- Refuses ill-formit PE heiders, files that arena DLL images, architecture mismatches, invalid image/header sizes, entry points ootwith the image, an section ranges ootwith the file/image afore allocatin target memory.
 - Finds the loader address frae its awn module an relative address, includin forwarded exports. It disna assume the same base address in ilka process. The target maun uise the same system loader binaries as the injector.
 - Uises `LoadLibraryW`, reports Windows errors, closes process/thread handles, an frees the path allocation efter the loader thread feenishes.
 - Gin the loader disna feenish within 15 seconds, it hauds the argument buffer sae memory still in uise isna freed. Check the target afore trying again; the OS reclaims the buffer whan the target exits.
@@ -42,3 +42,5 @@ Their outputs are `output\x64\Release\CocaineLauncher.exe` an `CocaineInjector.e
 - The DLL's hooks dinna support live unloadin. The injector disna dae unloadin, manual mapping, process-protection bypass, or anti-cheat bypass.
 
 Portable checks cover PE parsing. The Windows CI smoke check lades a synthetic DLL intae a synthetic host; it disna check a game. Locally built MinGW executables are cross-compiled artifacts; they still need a Windows runtime check.
+
+[LOADER_COMPARISON.md](LOADER_COMPARISON.md) records the Potato-Injector comparison an the completion gates still open.

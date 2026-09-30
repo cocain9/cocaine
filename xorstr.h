@@ -1,15 +1,12 @@
 #pragma once
 
-// warning C4172: returning address of local variable or temporary
-// potential pointer dangling? seems fine for now.
-#pragma warning( disable : 4172 )  
-
 // generate 'pseudo-random' xor key based on file, date and line.
 #define GET_XOR_KEYUI8  ( ( CONST_HASH( __FILE__ __TIMESTAMP__ ) + __LINE__ ) % UINT8_MAX )
 #define GET_XOR_KEYUI16 ( ( CONST_HASH( __FILE__ __TIMESTAMP__ ) + __LINE__ ) % UINT16_MAX )
 #define GET_XOR_KEYUI32 ( ( CONST_HASH( __FILE__ __TIMESTAMP__ ) + __LINE__ ) % UINT32_MAX )
 
-namespace xor{
+// 'xor' is a C++ keyword; use a valid namespace with the same encoding logic.
+namespace cocaine_strings {
 	// actual xor implementation.
 	template< class t, const size_t len, const t key >
 	class Gen {
@@ -42,17 +39,20 @@ namespace xor{
 	};
 }
 
-// todo - dex;  the issue with this code is that the xor key will be static since it's in the actual function call
-//              the macro needs to pass a key instead using __COUNTER__ or __LINE__ as the first template arg, the rest will be handled by the compiler (like size).
-//              sadly, this increasess compile time by a fuck ton.
-
 template< class t, const size_t len >
 constexpr __forceinline auto XorStr(const t(&s)[len]) {
-	return xor ::Gen< t, len, GET_XOR_KEYUI8 >(s, std::make_index_sequence< len >()).data();
+	// Return the owner, never a pointer into a temporary destroyed on return.
+	return cocaine_strings::Gen< t, len, static_cast<t>(GET_XOR_KEYUI8) >(s, std::make_index_sequence< len >());
 }
 
 #ifdef _DEBUG
 #define XOR( s ) ( s )
 #else
-#define XOR( s ) ( XorStr( s ) )
+// Each literal has its own process-lifetime buffer. Decode exactly once, using
+// thread-safe local static initialization, so stored pointers remain valid.
+#define XOR( s ) ([]() { \
+    static auto storage = XorStr( s ); \
+    static auto* text = storage.data(); \
+    return text; \
+}())
 #endif

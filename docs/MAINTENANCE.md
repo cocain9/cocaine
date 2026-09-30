@@ -34,6 +34,10 @@
 - Added repeatable regression checks an a Windows/Linux CI workflow.
 - Added Scots display text fer the current menu labels, choices, notices, an injector diagnostics. Internal IDs an callbacks bide unchynged.
 - Added a native Windows lancher EXE wi process an DLL pickers; it runs the matching command-line injector an shows its result. Windows CI checks the GUI opens an exposes its controls.
+- Mendit Release string-buffer lifetime, empty-string hashing, bone-position return lifetime an bounds, an beam-impact indexing efter expired entries are erased. Regression fixtures exercise these failure paths.
+- Removed the test runner's source-root include path tae keep the project's `math.h` frae shadowin MSVC's system heider. The parity ticklist uises explicit UTF-8 on Windows.
+
+See [VALIDATION.md](VALIDATION.md) fer the latest scan results an Windows build blocker.
 
 ## Rules fer development
 

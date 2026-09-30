@@ -13,6 +13,7 @@ constexpr int refresh_id = 102;
 constexpr int path_id = 103;
 constexpr int browse_id = 104;
 constexpr int load_id = 105;
+constexpr int status_id = 106;
 constexpr UINT poll_id = 1;
 
 HWND title_label{}, target_label{}, dll_label{}, process_box{}, path_box{}, refresh_button{}, browse_button{}, load_button{}, status_text{};
@@ -114,19 +115,37 @@ void begin_load(HWND window) {
         CloseHandle(read_end); CloseHandle(write_end);
         status(L"Canna prepare injector output: " + windows_error(error)); return;
     }
+    // A GUI launched from Explorer has no console stdin. Supply a valid,
+    // inheritable handle whenever STARTF_USESTDHANDLES is used.
+    HANDLE input = CreateFileW(L"NUL", GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE,
+        &security, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, nullptr);
+    if (input == INVALID_HANDLE_VALUE) {
+        const DWORD error = GetLastError();
+        CloseHandle(read_end); CloseHandle(write_end);
+        status(L"Canna prepare injector input: " + windows_error(error)); return;
+    }
+    // Reserve completion polling before starting the child; failure must not
+    // leave a running injector with permanently disabled controls.
+    if (!SetTimer(window, poll_id, 100, nullptr)) {
+        const DWORD error = GetLastError();
+        CloseHandle(input); CloseHandle(read_end); CloseHandle(write_end);
+        status(L"Canna watch the injector: " + windows_error(error)); return;
+    }
     STARTUPINFOW startup{};
     startup.cb = sizeof(startup);
     startup.dwFlags = STARTF_USESTDHANDLES | STARTF_USESHOWWINDOW;
     startup.wShowWindow = SW_HIDE;
-    startup.hStdInput = GetStdHandle(STD_INPUT_HANDLE);
+    startup.hStdInput = input;
     startup.hStdOutput = write_end;
     startup.hStdError = write_end;
     PROCESS_INFORMATION process{};
     const BOOL started = CreateProcessW(executable.c_str(), command.data(), nullptr, nullptr, TRUE,
         CREATE_NO_WINDOW, nullptr, own_directory().c_str(), &startup, &process);
     const DWORD error = started ? ERROR_SUCCESS : GetLastError();
+    CloseHandle(input);
     CloseHandle(write_end);
     if (!started) {
+        KillTimer(window, poll_id);
         CloseHandle(read_end);
         status(L"Canna stairt injector: " + windows_error(error)); return;
     }
@@ -135,7 +154,6 @@ void begin_load(HWND window) {
     child_output = read_end;
     EnableWindow(load_button, FALSE);
     status(L"Ladin DLL... this can tak up tae 15 seconds.");
-    SetTimer(window, poll_id, 100, nullptr);
 }
 
 void finish_load(HWND window) {
@@ -177,7 +195,7 @@ LRESULT CALLBACK window_proc(HWND window, UINT message, WPARAM wparam, LPARAM lp
         path_box = control(window, L"EDIT", L"", WS_BORDER | ES_AUTOHSCROLL, path_id);
         browse_button = control(window, L"BUTTON", L"Chyse...", BS_PUSHBUTTON, browse_id);
         load_button = control(window, L"BUTTON", L"Lade DLL", BS_DEFPUSHBUTTON, load_id);
-        status_text = control(window, L"STATIC", L"", SS_LEFT, 0);
+        status_text = control(window, L"STATIC", L"", SS_LEFT, status_id);
         refresh_processes();
         return 0;
     }

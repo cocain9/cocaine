@@ -42,8 +42,36 @@ namespace cocaine {
         if (!((machine == 0x014c && magic == 0x010b && optional_size >= 224) ||
               (machine == 0x8664 && magic == 0x020b && optional_size >= 240)))
             throw std::runtime_error("Anly matching x86/x64 PE DLL heiders are supportit");
-        if (sections == 0 || sections > 96 || pe + 24 + optional_size + std::uint64_t(sections) * 40 > length)
+        const auto section_table = pe + 24 + optional_size;
+        const auto section_table_end = section_table + std::uint64_t(sections) * 40;
+        if (sections == 0 || sections > 96 || section_table_end > length)
             throw std::runtime_error("DLL section table isna valid or is cut short");
+
+        // These common PE32/PE32+ fields have identical offsets. Validate sizes
+        // with widened arithmetic before the Windows loader sees the image.
+        std::array<unsigned char, 64> optional{};
+        read(pe + 24, optional.data(), optional.size());
+        const auto entry = u32(optional.data() + 16);
+        const auto image_size = u32(optional.data() + 56);
+        const auto header_size = u32(optional.data() + 60);
+        if (!image_size || header_size < section_table_end || header_size > length || header_size > image_size)
+            throw std::runtime_error("DLL image or heider size isna valid");
+        if (entry && entry >= image_size)
+            throw std::runtime_error("DLL entry point is ootwith the image");
+
+        for (std::uint16_t index = 0; index < sections; ++index) {
+            std::array<unsigned char, 40> section{};
+            read(section_table + std::uint64_t(index) * section.size(), section.data(), section.size());
+            const auto virtual_size = u32(section.data() + 8);
+            const auto virtual_start = u32(section.data() + 12);
+            const auto raw_size = u32(section.data() + 16);
+            const auto raw_start = u32(section.data() + 20);
+            if (raw_size && (raw_start < header_size || std::uint64_t(raw_start) + raw_size > length))
+                throw std::runtime_error("DLL section data is ootwith the file");
+            const auto span = virtual_size > raw_size ? virtual_size : raw_size;
+            if (std::uint64_t(virtual_start) + span > image_size)
+                throw std::runtime_error("DLL section range is ootwith the image");
+        }
         return machine;
     }
 }

@@ -30,7 +30,8 @@ private:
         size_t out{};
     
         // count number of characters.
-        while( str[ ++out ] != '\0' );
+        // Inspect index zero first: an empty literal has no element at index one.
+        while( str[ out ] != '\0' ) ++out;
     
         // add one for null character if desired.
         if( include_nullchar )

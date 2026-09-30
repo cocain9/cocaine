@@ -542,9 +542,12 @@ public:
 		return get< int >(g_entoffsets.m_iHealth);
 	}
 
-	__forceinline vec3_t& GetBonePosition(int i)
+	// Return an owned value; both old branches returned dangling references.
+	__forceinline vec3_t GetBonePosition(int i)
 	{
-		matrix3x4a_t boneMatrix[128];
+		if (i < 0 || i >= 128)
+			return vec3_t(0, 0, 0);
+		matrix3x4a_t boneMatrix[128]{};
 		if (this->SetupBones(boneMatrix, 128, 0x00000100, GetTickCount64()))
 		{
 			return vec3_t(boneMatrix[i][0][3], boneMatrix[i][1][3], boneMatrix[i][2][3]);
