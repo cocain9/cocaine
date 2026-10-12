@@ -1,0 +1,5380 @@
+{
+  "source_sha256": "27d0fb2299a86a65ebf5e185f929cb8213a64254cfa3937470184ab8692cf4dc",
+  "controls": [
+    {
+      "key": "AimbotTab.enable",
+      "category": "aimbot",
+      "member": "enable",
+      "type": "Checkbox",
+      "label": "enable",
+      "config_id": "enable",
+      "column": 0,
+      "setup": "XOR(\"enable\"),XOR(\"enable\")",
+      "calls": [],
+      "choices": []
+    },
+    {
+      "key": "AimbotTab.silent",
+      "category": "aimbot",
+      "member": "silent",
+      "type": "Checkbox",
+      "label": "silent aimbot",
+      "config_id": "silent",
+      "column": 0,
+      "setup": "XOR(\"silent aimbot\"),XOR(\"silent\")",
+      "calls": [],
+      "choices": []
+    },
+    {
+      "key": "AimbotTab.selection",
+      "category": "aimbot",
+      "member": "selection",
+      "type": "Dropdown",
+      "label": "target selection",
+      "config_id": "selection",
+      "column": 0,
+      "setup": "XOR(\"target selection\"),XOR(\"selection\"),{XOR(\"distance\"),XOR(\"crosshair\"),XOR(\"damage\"),XOR(\"health\"),XOR(\"lag\"),XOR(\"height\")}",
+      "calls": [],
+      "choices": [
+        "distance",
+        "crosshair",
+        "damage",
+        "health",
+        "lag",
+        "height"
+      ]
+    },
+    {
+      "key": "AimbotTab.fov",
+      "category": "aimbot",
+      "member": "fov",
+      "type": "Checkbox",
+      "label": "angle limit",
+      "config_id": "fov",
+      "column": 0,
+      "setup": "XOR(\"angle limit\"),XOR(\"fov\")",
+      "calls": [],
+      "choices": []
+    },
+    {
+      "key": "AimbotTab.fov_amount",
+      "category": "aimbot",
+      "member": "fov_amount",
+      "type": "Slider",
+      "label": "",
+      "config_id": "fov_amount",
+      "column": 0,
+      "setup": "\"\",XOR(\"fov_amount\"),1.f,180.f,false,0,180.f,1.f,XOR(L\"\\u00B0\")",
+      "calls": [
+        "AddShowCallback(callbacks::IsFovOn)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "AimbotTab.hitbox",
+      "category": "aimbot",
+      "member": "hitbox",
+      "type": "MultiDropdown",
+      "label": "hitbox",
+      "config_id": "hitbox",
+      "column": 0,
+      "setup": "XOR(\"hitbox\"),XOR(\"hitbox\"),{XOR(\"head\"),XOR(\"chest\"),XOR(\"body\"),XOR(\"arms\"),XOR(\"legs\")}",
+      "calls": [],
+      "choices": [
+        "head",
+        "chest",
+        "body",
+        "arms",
+        "legs"
+      ]
+    },
+    {
+      "key": "AimbotTab.hitbox_history",
+      "category": "aimbot",
+      "member": "hitbox_history",
+      "type": "MultiDropdown",
+      "label": "hitbox history",
+      "config_id": "hitbox_history",
+      "column": 0,
+      "setup": "XOR(\"hitbox history\"),XOR(\"hitbox_history\"),{XOR(\"head\"),XOR(\"chest\"),XOR(\"body\"),XOR(\"arms\"),XOR(\"legs\")}",
+      "calls": [],
+      "choices": [
+        "head",
+        "chest",
+        "body",
+        "arms",
+        "legs"
+      ]
+    },
+    {
+      "key": "AimbotTab.multipoint",
+      "category": "aimbot",
+      "member": "multipoint",
+      "type": "MultiDropdown",
+      "label": "multi-point",
+      "config_id": "multipoint",
+      "column": 0,
+      "setup": "XOR(\"multi-point\"),XOR(\"multipoint\"),{XOR(\"head\"),XOR(\"chest\"),XOR(\"body\"),XOR(\"legs\")}",
+      "calls": [],
+      "choices": [
+        "head",
+        "chest",
+        "body",
+        "legs"
+      ]
+    },
+    {
+      "key": "AimbotTab.scale",
+      "category": "aimbot",
+      "member": "scale",
+      "type": "Slider",
+      "label": "",
+      "config_id": "hitbox_scale",
+      "column": 0,
+      "setup": "\"\",XOR(\"hitbox_scale\"),1.f,100.f,false,0,90.f,1.f,XOR(L\"%\")",
+      "calls": [
+        "AddShowCallback(callbacks::IsMultipointOn)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "AimbotTab.body_scale",
+      "category": "aimbot",
+      "member": "body_scale",
+      "type": "Slider",
+      "label": "body hitbox scale",
+      "config_id": "body_hitbox_scale",
+      "column": 0,
+      "setup": "XOR(\"body hitbox scale\"),XOR(\"body_hitbox_scale\"),1.f,100.f,true,0,50.f,1.f,XOR(L\"%\")",
+      "calls": [
+        "AddShowCallback(callbacks::IsMultipointBodyOn)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "AimbotTab.minimal_damage",
+      "category": "aimbot",
+      "member": "minimal_damage",
+      "type": "Slider",
+      "label": "minimal damage",
+      "config_id": "minimal_damage",
+      "column": 0,
+      "setup": "XOR(\"minimal damage\"),XOR(\"minimal_damage\"),1.f,100.f,true,0,40.f,1.f",
+      "calls": [],
+      "choices": []
+    },
+    {
+      "key": "AimbotTab.minimal_damage_hp",
+      "category": "aimbot",
+      "member": "minimal_damage_hp",
+      "type": "Checkbox",
+      "label": "scale damage on hp",
+      "config_id": "minimal_damage_hp",
+      "column": 0,
+      "setup": "XOR(\"scale damage on hp\"),XOR(\"minimal_damage_hp\")",
+      "calls": [],
+      "choices": []
+    },
+    {
+      "key": "AimbotTab.penetrate",
+      "category": "aimbot",
+      "member": "penetrate",
+      "type": "Checkbox",
+      "label": "penetrate walls",
+      "config_id": "penetrate",
+      "column": 0,
+      "setup": "XOR(\"penetrate walls\"),XOR(\"penetrate\")",
+      "calls": [],
+      "choices": []
+    },
+    {
+      "key": "AimbotTab.penetrate_minimal_damage",
+      "category": "aimbot",
+      "member": "penetrate_minimal_damage",
+      "type": "Slider",
+      "label": "",
+      "config_id": "penetrate_minimal_damage",
+      "column": 0,
+      "setup": "\"\",XOR(\"penetrate_minimal_damage\"),1.f,100.f,false,0,30.f,1.f",
+      "calls": [
+        "AddShowCallback(callbacks::IsPenetrationOn)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "AimbotTab.penetrate_minimal_damage_hp",
+      "category": "aimbot",
+      "member": "penetrate_minimal_damage_hp",
+      "type": "Checkbox",
+      "label": "scale penetration damage on hp",
+      "config_id": "penetrate_minimal_damage_hp",
+      "column": 0,
+      "setup": "XOR(\"scale penetration damage on hp\"),XOR(\"penetrate_minimal_damage_hp\")",
+      "calls": [
+        "AddShowCallback(callbacks::IsPenetrationOn)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "AimbotTab.knifebot",
+      "category": "aimbot",
+      "member": "knifebot",
+      "type": "Checkbox",
+      "label": "aimbot with knife",
+      "config_id": "knifebot",
+      "column": 0,
+      "setup": "XOR(\"aimbot with knife\"),XOR(\"knifebot\")",
+      "calls": [],
+      "choices": []
+    },
+    {
+      "key": "AimbotTab.zeusbot",
+      "category": "aimbot",
+      "member": "zeusbot",
+      "type": "Checkbox",
+      "label": "aimbot with taser",
+      "config_id": "zeusbot",
+      "column": 0,
+      "setup": "XOR(\"aimbot with taser\"),XOR(\"zeusbot\")",
+      "calls": [],
+      "choices": []
+    },
+    {
+      "key": "AimbotTab.zoom",
+      "category": "aimbot",
+      "member": "zoom",
+      "type": "Dropdown",
+      "label": "auto scope",
+      "config_id": "zoom",
+      "column": 1,
+      "setup": "XOR(\"auto scope\"),XOR(\"zoom\"),{XOR(\"off\"),XOR(\"always\"),XOR(\"hitchance fail\")}",
+      "calls": [],
+      "choices": [
+        "off",
+        "always",
+        "hitchance fail"
+      ]
+    },
+    {
+      "key": "AimbotTab.nospread",
+      "category": "aimbot",
+      "member": "nospread",
+      "type": "Checkbox",
+      "label": "compensate spread",
+      "config_id": "nospread",
+      "column": 1,
+      "setup": "XOR(\"compensate spread\"),XOR(\"nospread\")",
+      "calls": [
+        "AddShowCallback(callbacks::IsConfigNS)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "AimbotTab.norecoil",
+      "category": "aimbot",
+      "member": "norecoil",
+      "type": "Checkbox",
+      "label": "compensate recoil",
+      "config_id": "norecoil",
+      "column": 1,
+      "setup": "XOR(\"compensate recoil\"),XOR(\"norecoil\")",
+      "calls": [],
+      "choices": []
+    },
+    {
+      "key": "AimbotTab.hitchance",
+      "category": "aimbot",
+      "member": "hitchance",
+      "type": "Checkbox",
+      "label": "hitchance",
+      "config_id": "hitchance",
+      "column": 1,
+      "setup": "XOR(\"hitchance\"),XOR(\"hitchance\")",
+      "calls": [
+        "AddShowCallback(callbacks::IsConfigMM)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "AimbotTab.hitchance_amount",
+      "category": "aimbot",
+      "member": "hitchance_amount",
+      "type": "Slider",
+      "label": "",
+      "config_id": "hitchance_amount",
+      "column": 1,
+      "setup": "\"\",XOR(\"hitchance_amount\"),1.f,100.f,false,0,50.f,1.f,XOR(L\"%\")",
+      "calls": [
+        "AddShowCallback(callbacks::IsConfigMM)",
+        "AddShowCallback(callbacks::IsHitchanceOn)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "AimbotTab.lagfix",
+      "category": "aimbot",
+      "member": "lagfix",
+      "type": "Checkbox",
+      "label": "predict fake-lag",
+      "config_id": "lagfix",
+      "column": 1,
+      "setup": "XOR(\"predict fake-lag\"),XOR(\"lagfix\")",
+      "calls": [],
+      "choices": []
+    },
+    {
+      "key": "AimbotTab.correct",
+      "category": "aimbot",
+      "member": "correct",
+      "type": "Checkbox",
+      "label": "correct anti-aim",
+      "config_id": "correct",
+      "column": 1,
+      "setup": "XOR(\"correct anti-aim\"),XOR(\"correct\")",
+      "calls": [],
+      "choices": []
+    },
+    {
+      "key": "AimbotTab.baim1",
+      "category": "aimbot",
+      "member": "baim1",
+      "type": "MultiDropdown",
+      "label": "prefer body aim",
+      "config_id": "baim1",
+      "column": 1,
+      "setup": "XOR(\"prefer body aim\"),XOR(\"baim1\"),{XOR(\"always\"),XOR(\"lethal\"),XOR(\"lethal x2\"),XOR(\"fake\"),XOR(\"in air\")}",
+      "calls": [],
+      "choices": [
+        "always",
+        "lethal",
+        "lethal x2",
+        "fake",
+        "in air"
+      ]
+    },
+    {
+      "key": "AimbotTab.baim2",
+      "category": "aimbot",
+      "member": "baim2",
+      "type": "MultiDropdown",
+      "label": "only body aim",
+      "config_id": "baim2",
+      "column": 1,
+      "setup": "XOR(\"only body aim\"),XOR(\"baim2\"),{XOR(\"always\"),XOR(\"health\"),XOR(\"fake\"),XOR(\"in air\")}",
+      "calls": [],
+      "choices": [
+        "always",
+        "health",
+        "fake",
+        "in air"
+      ]
+    },
+    {
+      "key": "AimbotTab.baim_hp",
+      "category": "aimbot",
+      "member": "baim_hp",
+      "type": "Slider",
+      "label": "",
+      "config_id": "baim_hp",
+      "column": 1,
+      "setup": "\"\",XOR(\"baim_hp\"),1.f,50.f,false,0,20.f,1.f,XOR(L\"hp\")",
+      "calls": [
+        "AddShowCallback(callbacks::IsBaimHealth)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "AimbotTab.baim_key",
+      "category": "aimbot",
+      "member": "baim_key",
+      "type": "Keybind",
+      "label": "body aim on key",
+      "config_id": "body aim on key",
+      "column": 1,
+      "setup": "XOR(\"body aim on key\"),XOR(\"body aim on key\")",
+      "calls": [],
+      "choices": []
+    },
+    {
+      "key": "AntiAimTab.enable",
+      "category": "anti-aim",
+      "member": "enable",
+      "type": "Checkbox",
+      "label": "enable",
+      "config_id": "enable",
+      "column": 0,
+      "setup": "XOR(\"enable\"),XOR(\"enable\")",
+      "calls": [],
+      "choices": []
+    },
+    {
+      "key": "AntiAimTab.edge",
+      "category": "anti-aim",
+      "member": "edge",
+      "type": "Checkbox",
+      "label": "edge",
+      "config_id": "edge",
+      "column": 0,
+      "setup": "XOR(\"edge\"),XOR(\"edge\")",
+      "calls": [],
+      "choices": []
+    },
+    {
+      "key": "AntiAimTab.mode",
+      "category": "anti-aim",
+      "member": "mode",
+      "type": "Dropdown",
+      "label": "",
+      "config_id": "mode",
+      "column": 0,
+      "setup": "\"\",XOR(\"mode\"),{XOR(\"stand\"),XOR(\"walk\"),XOR(\"air\")},false",
+      "calls": [],
+      "choices": [
+        "stand",
+        "walk",
+        "air"
+      ]
+    },
+    {
+      "key": "AntiAimTab.pitch_stand",
+      "category": "anti-aim",
+      "member": "pitch_stand",
+      "type": "Dropdown",
+      "label": "pitch",
+      "config_id": "pitch_stnd",
+      "column": 0,
+      "setup": "XOR(\"pitch\"),XOR(\"pitch_stnd\"),{XOR(\"off\"),XOR(\"down\"),XOR(\"up\"),XOR(\"random\"),XOR(\"ideal\")}",
+      "calls": [
+        "AddShowCallback(callbacks::IsAntiAimModeStand)"
+      ],
+      "choices": [
+        "off",
+        "down",
+        "up",
+        "random",
+        "ideal"
+      ]
+    },
+    {
+      "key": "AntiAimTab.yaw_stand",
+      "category": "anti-aim",
+      "member": "yaw_stand",
+      "type": "Dropdown",
+      "label": "yaw",
+      "config_id": "yaw_stnd",
+      "column": 0,
+      "setup": "XOR(\"yaw\"),XOR(\"yaw_stnd\"),{XOR(\"off\"),XOR(\"direction\"),XOR(\"jitter\"),XOR(\"rotate\"),XOR(\"random\")}",
+      "calls": [
+        "AddShowCallback(callbacks::IsAntiAimModeStand)"
+      ],
+      "choices": [
+        "off",
+        "direction",
+        "jitter",
+        "rotate",
+        "random"
+      ]
+    },
+    {
+      "key": "AntiAimTab.jitter_range_stand",
+      "category": "anti-aim",
+      "member": "jitter_range_stand",
+      "type": "Slider",
+      "label": "",
+      "config_id": "jitter_range_stnd",
+      "column": 0,
+      "setup": "\"\",XOR(\"jitter_range_stnd\"),1.f,180.f,false,0,45.f,5.f,XOR(L\"\\u00B0\")",
+      "calls": [
+        "AddShowCallback(callbacks::IsAntiAimModeStand)",
+        "AddShowCallback(callbacks::IsStandYawJitter)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "AntiAimTab.rot_range_stand",
+      "category": "anti-aim",
+      "member": "rot_range_stand",
+      "type": "Slider",
+      "label": "",
+      "config_id": "rot_range_stnd",
+      "column": 0,
+      "setup": "\"\",XOR(\"rot_range_stnd\"),0.f,360.f,false,0,360.f,5.f,XOR(L\"\\u00B0\")",
+      "calls": [
+        "AddShowCallback(callbacks::IsAntiAimModeStand)",
+        "AddShowCallback(callbacks::IsStandYawRotate)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "AntiAimTab.rot_speed_stand",
+      "category": "anti-aim",
+      "member": "rot_speed_stand",
+      "type": "Slider",
+      "label": "",
+      "config_id": "rot_speed_stnd",
+      "column": 0,
+      "setup": "\"\",XOR(\"rot_speed_stnd\"),1.f,100.f,false,0,10.f,1.f,XOR(L\"%\")",
+      "calls": [
+        "AddShowCallback(callbacks::IsAntiAimModeStand)",
+        "AddShowCallback(callbacks::IsStandYawRotate)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "AntiAimTab.rand_update_stand",
+      "category": "anti-aim",
+      "member": "rand_update_stand",
+      "type": "Slider",
+      "label": "",
+      "config_id": "rand_update_stnd",
+      "column": 0,
+      "setup": "\"\",XOR(\"rand_update_stnd\"),0.f,1.f,false,1,0.f,0.1f",
+      "calls": [
+        "AddShowCallback(callbacks::IsAntiAimModeStand)",
+        "AddShowCallback(callbacks::IsStandYawRnadom)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "AntiAimTab.dir_stand",
+      "category": "anti-aim",
+      "member": "dir_stand",
+      "type": "Dropdown",
+      "label": "direction",
+      "config_id": "dir_stnd",
+      "column": 0,
+      "setup": "XOR(\"direction\"),XOR(\"dir_stnd\"),{XOR(\"auto\"),XOR(\"backwards\"),XOR(\"left\"),XOR(\"right\"),XOR(\"custom\")}",
+      "calls": [
+        "AddShowCallback(callbacks::IsAntiAimModeStand)",
+        "AddShowCallback(callbacks::HasStandYaw)"
+      ],
+      "choices": [
+        "auto",
+        "backwards",
+        "left",
+        "right",
+        "custom"
+      ]
+    },
+    {
+      "key": "AntiAimTab.dir_time_stand",
+      "category": "anti-aim",
+      "member": "dir_time_stand",
+      "type": "Slider",
+      "label": "",
+      "config_id": "dir_time_stnd",
+      "column": 0,
+      "setup": "\"\",XOR(\"dir_time_stnd\"),0.f,10.f,false,0,0.f,1.f,XOR(L\"s\")",
+      "calls": [
+        "AddShowCallback(callbacks::IsAntiAimModeStand)",
+        "AddShowCallback(callbacks::HasStandYaw)",
+        "AddShowCallback(callbacks::IsStandDirAuto)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "AntiAimTab.dir_custom_stand",
+      "category": "anti-aim",
+      "member": "dir_custom_stand",
+      "type": "Slider",
+      "label": "",
+      "config_id": "dir_custom_stnd",
+      "column": 0,
+      "setup": "\"\",XOR(\"dir_custom_stnd\"),-180.f,180.f,false,0,0.f,5.f,XOR(L\"\\u00B0\")",
+      "calls": [
+        "AddShowCallback(callbacks::IsAntiAimModeStand)",
+        "AddShowCallback(callbacks::HasStandYaw)",
+        "AddShowCallback(callbacks::IsStandDirCustom)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "AntiAimTab.base_angle_stand",
+      "category": "anti-aim",
+      "member": "base_angle_stand",
+      "type": "Dropdown",
+      "label": "base angle",
+      "config_id": "base_angle_stand",
+      "column": 0,
+      "setup": "XOR(\"base angle\"),XOR(\"base_angle_stand\"),{XOR(\"off\"),XOR(\"static\"),XOR(\"away crosshair\"),XOR(\"away distance\")}",
+      "calls": [
+        "AddShowCallback(callbacks::IsAntiAimModeStand)",
+        "AddShowCallback(callbacks::HasStandYaw)"
+      ],
+      "choices": [
+        "off",
+        "static",
+        "away crosshair",
+        "away distance"
+      ]
+    },
+    {
+      "key": "AntiAimTab.dir_lock",
+      "category": "anti-aim",
+      "member": "dir_lock",
+      "type": "Checkbox",
+      "label": "lock direction",
+      "config_id": "dir_lock",
+      "column": 0,
+      "setup": "XOR(\"lock direction\"),XOR(\"dir_lock\")",
+      "calls": [
+        "AddShowCallback(callbacks::IsAntiAimModeStand)",
+        "AddShowCallback(callbacks::HasStandYaw)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "AntiAimTab.body_fake_stand",
+      "category": "anti-aim",
+      "member": "body_fake_stand",
+      "type": "Dropdown",
+      "label": "fake body",
+      "config_id": "body_fake_stnd",
+      "column": 0,
+      "setup": "XOR(\"fake body\"),XOR(\"body_fake_stnd\"),{XOR(\"off\"),XOR(\"left\"),XOR(\"right\"),XOR(\"opposite\"),XOR(\"z\")}",
+      "calls": [
+        "AddShowCallback(callbacks::IsAntiAimModeStand)",
+        "AddShowCallback(callbacks::HasStandYaw)"
+      ],
+      "choices": [
+        "off",
+        "left",
+        "right",
+        "opposite",
+        "z"
+      ]
+    },
+    {
+      "key": "AntiAimTab.pitch_walk",
+      "category": "anti-aim",
+      "member": "pitch_walk",
+      "type": "Dropdown",
+      "label": "pitch",
+      "config_id": "pitch_walk",
+      "column": 0,
+      "setup": "XOR(\"pitch\"),XOR(\"pitch_walk\"),{XOR(\"off\"),XOR(\"down\"),XOR(\"up\"),XOR(\"random\"),XOR(\"ideal\")}",
+      "calls": [
+        "AddShowCallback(callbacks::IsAntiAimModeWalk)"
+      ],
+      "choices": [
+        "off",
+        "down",
+        "up",
+        "random",
+        "ideal"
+      ]
+    },
+    {
+      "key": "AntiAimTab.yaw_walk",
+      "category": "anti-aim",
+      "member": "yaw_walk",
+      "type": "Dropdown",
+      "label": "yaw",
+      "config_id": "yaw_walk",
+      "column": 0,
+      "setup": "XOR(\"yaw\"),XOR(\"yaw_walk\"),{XOR(\"off\"),XOR(\"direction\"),XOR(\"jitter\"),XOR(\"rotate\"),XOR(\"random\")}",
+      "calls": [
+        "AddShowCallback(callbacks::IsAntiAimModeWalk)"
+      ],
+      "choices": [
+        "off",
+        "direction",
+        "jitter",
+        "rotate",
+        "random"
+      ]
+    },
+    {
+      "key": "AntiAimTab.jitter_range_walk",
+      "category": "anti-aim",
+      "member": "jitter_range_walk",
+      "type": "Slider",
+      "label": "",
+      "config_id": "jitter_range_walk",
+      "column": 0,
+      "setup": "\"\",XOR(\"jitter_range_walk\"),1.f,180.f,false,0,45.f,5.f,XOR(L\"\\u00B0\")",
+      "calls": [
+        "AddShowCallback(callbacks::IsAntiAimModeWalk)",
+        "AddShowCallback(callbacks::IsWalkYawJitter)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "AntiAimTab.rot_range_walk",
+      "category": "anti-aim",
+      "member": "rot_range_walk",
+      "type": "Slider",
+      "label": "",
+      "config_id": "rot_range_walk",
+      "column": 0,
+      "setup": "\"\",XOR(\"rot_range_walk\"),0.f,360.f,false,0,360.f,5.f,XOR(L\"\\u00B0\")",
+      "calls": [
+        "AddShowCallback(callbacks::IsAntiAimModeWalk)",
+        "AddShowCallback(callbacks::IsWalkYawRotate)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "AntiAimTab.rot_speed_walk",
+      "category": "anti-aim",
+      "member": "rot_speed_walk",
+      "type": "Slider",
+      "label": "",
+      "config_id": "rot_speed_walk",
+      "column": 0,
+      "setup": "\"\",XOR(\"rot_speed_walk\"),1.f,100.f,false,0,10.f,1.f,XOR(L\"%\")",
+      "calls": [
+        "AddShowCallback(callbacks::IsAntiAimModeWalk)",
+        "AddShowCallback(callbacks::IsWalkYawRotate)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "AntiAimTab.rand_update_walk",
+      "category": "anti-aim",
+      "member": "rand_update_walk",
+      "type": "Slider",
+      "label": "",
+      "config_id": "rand_update_walk",
+      "column": 0,
+      "setup": "\"\",XOR(\"rand_update_walk\"),0.f,1.f,false,1,0.f,0.1f",
+      "calls": [
+        "AddShowCallback(callbacks::IsAntiAimModeWalk)",
+        "AddShowCallback(callbacks::IsWalkYawRandom)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "AntiAimTab.dir_walk",
+      "category": "anti-aim",
+      "member": "dir_walk",
+      "type": "Dropdown",
+      "label": "direction",
+      "config_id": "dir_walk",
+      "column": 0,
+      "setup": "XOR(\"direction\"),XOR(\"dir_walk\"),{XOR(\"auto\"),XOR(\"backwards\"),XOR(\"left\"),XOR(\"right\"),XOR(\"custom\")}",
+      "calls": [
+        "AddShowCallback(callbacks::IsAntiAimModeWalk)",
+        "AddShowCallback(callbacks::WalkHasYaw)"
+      ],
+      "choices": [
+        "auto",
+        "backwards",
+        "left",
+        "right",
+        "custom"
+      ]
+    },
+    {
+      "key": "AntiAimTab.dir_time_walk",
+      "category": "anti-aim",
+      "member": "dir_time_walk",
+      "type": "Slider",
+      "label": "",
+      "config_id": "dir_time_walk",
+      "column": 0,
+      "setup": "\"\",XOR(\"dir_time_walk\"),0.f,10.f,false,0,0.f,1.f,XOR(L\"s\")",
+      "calls": [
+        "AddShowCallback(callbacks::IsAntiAimModeWalk)",
+        "AddShowCallback(callbacks::WalkHasYaw)",
+        "AddShowCallback(callbacks::IsWalkDirAuto)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "AntiAimTab.dir_custom_walk",
+      "category": "anti-aim",
+      "member": "dir_custom_walk",
+      "type": "Slider",
+      "label": "",
+      "config_id": "dir_custom_walk",
+      "column": 0,
+      "setup": "\"\",XOR(\"dir_custom_walk\"),-180.f,180.f,false,0,0.f,5.f,XOR(L\"\\u00B0\")",
+      "calls": [
+        "AddShowCallback(callbacks::IsAntiAimModeWalk)",
+        "AddShowCallback(callbacks::WalkHasYaw)",
+        "AddShowCallback(callbacks::IsWalkDirCustom)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "AntiAimTab.base_angle_walk",
+      "category": "anti-aim",
+      "member": "base_angle_walk",
+      "type": "Dropdown",
+      "label": "base angle",
+      "config_id": "base_angle_walk",
+      "column": 0,
+      "setup": "XOR(\"base angle\"),XOR(\"base_angle_walk\"),{XOR(\"off\"),XOR(\"static\"),XOR(\"away crosshair\"),XOR(\"away distance\")}",
+      "calls": [
+        "AddShowCallback(callbacks::IsAntiAimModeWalk)",
+        "AddShowCallback(callbacks::WalkHasYaw)"
+      ],
+      "choices": [
+        "off",
+        "static",
+        "away crosshair",
+        "away distance"
+      ]
+    },
+    {
+      "key": "AntiAimTab.pitch_air",
+      "category": "anti-aim",
+      "member": "pitch_air",
+      "type": "Dropdown",
+      "label": "pitch",
+      "config_id": "pitch_air",
+      "column": 0,
+      "setup": "XOR(\"pitch\"),XOR(\"pitch_air\"),{XOR(\"off\"),XOR(\"down\"),XOR(\"up\"),XOR(\"random\"),XOR(\"ideal\")}",
+      "calls": [
+        "AddShowCallback(callbacks::IsAntiAimModeAir)"
+      ],
+      "choices": [
+        "off",
+        "down",
+        "up",
+        "random",
+        "ideal"
+      ]
+    },
+    {
+      "key": "AntiAimTab.yaw_air",
+      "category": "anti-aim",
+      "member": "yaw_air",
+      "type": "Dropdown",
+      "label": "yaw",
+      "config_id": "yaw_air",
+      "column": 0,
+      "setup": "XOR(\"yaw\"),XOR(\"yaw_air\"),{XOR(\"off\"),XOR(\"direction\"),XOR(\"jitter\"),XOR(\"rotate\"),XOR(\"random\")}",
+      "calls": [
+        "AddShowCallback(callbacks::IsAntiAimModeAir)"
+      ],
+      "choices": [
+        "off",
+        "direction",
+        "jitter",
+        "rotate",
+        "random"
+      ]
+    },
+    {
+      "key": "AntiAimTab.jitter_range_air",
+      "category": "anti-aim",
+      "member": "jitter_range_air",
+      "type": "Slider",
+      "label": "",
+      "config_id": "jitter_range_air",
+      "column": 0,
+      "setup": "\"\",XOR(\"jitter_range_air\"),1.f,180.f,false,0,45.f,5.f,XOR(L\"\\u00B0\")",
+      "calls": [
+        "AddShowCallback(callbacks::IsAntiAimModeAir)",
+        "AddShowCallback(callbacks::IsAirYawJitter)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "AntiAimTab.rot_range_air",
+      "category": "anti-aim",
+      "member": "rot_range_air",
+      "type": "Slider",
+      "label": "",
+      "config_id": "rot_range_air",
+      "column": 0,
+      "setup": "\"\",XOR(\"rot_range_air\"),0.f,360.f,false,0,360.f,5.f,XOR(L\"\\u00B0\")",
+      "calls": [
+        "AddShowCallback(callbacks::IsAntiAimModeAir)",
+        "AddShowCallback(callbacks::IsAirYawRotate)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "AntiAimTab.rot_speed_air",
+      "category": "anti-aim",
+      "member": "rot_speed_air",
+      "type": "Slider",
+      "label": "",
+      "config_id": "rot_speed_air",
+      "column": 0,
+      "setup": "\"\",XOR(\"rot_speed_air\"),1.f,100.f,false,0,10.f,1.f,XOR(L\"%\")",
+      "calls": [
+        "AddShowCallback(callbacks::IsAntiAimModeAir)",
+        "AddShowCallback(callbacks::IsAirYawRotate)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "AntiAimTab.rand_update_air",
+      "category": "anti-aim",
+      "member": "rand_update_air",
+      "type": "Slider",
+      "label": "",
+      "config_id": "rand_update_air",
+      "column": 0,
+      "setup": "\"\",XOR(\"rand_update_air\"),0.f,1.f,false,1,0.f,0.1f",
+      "calls": [
+        "AddShowCallback(callbacks::IsAntiAimModeAir)",
+        "AddShowCallback(callbacks::IsAirYawRandom)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "AntiAimTab.dir_air",
+      "category": "anti-aim",
+      "member": "dir_air",
+      "type": "Dropdown",
+      "label": "direction",
+      "config_id": "dir_air",
+      "column": 0,
+      "setup": "XOR(\"direction\"),XOR(\"dir_air\"),{XOR(\"auto\"),XOR(\"backwards\"),XOR(\"left\"),XOR(\"right\"),XOR(\"custom\")}",
+      "calls": [
+        "AddShowCallback(callbacks::IsAntiAimModeAir)",
+        "AddShowCallback(callbacks::AirHasYaw)"
+      ],
+      "choices": [
+        "auto",
+        "backwards",
+        "left",
+        "right",
+        "custom"
+      ]
+    },
+    {
+      "key": "AntiAimTab.dir_time_air",
+      "category": "anti-aim",
+      "member": "dir_time_air",
+      "type": "Slider",
+      "label": "",
+      "config_id": "dir_time_air",
+      "column": 0,
+      "setup": "\"\",XOR(\"dir_time_air\"),0.f,10.f,false,0,0.f,1.f,XOR(L\"s\")",
+      "calls": [
+        "AddShowCallback(callbacks::IsAntiAimModeAir)",
+        "AddShowCallback(callbacks::AirHasYaw)",
+        "AddShowCallback(callbacks::IsAirDirAuto)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "AntiAimTab.dir_custom_air",
+      "category": "anti-aim",
+      "member": "dir_custom_air",
+      "type": "Slider",
+      "label": "",
+      "config_id": "dir_custom_air",
+      "column": 0,
+      "setup": "\"\",XOR(\"dir_custom_air\"),-180.f,180.f,false,0,0.f,5.f,XOR(L\"\\u00B0\")",
+      "calls": [
+        "AddShowCallback(callbacks::IsAntiAimModeAir)",
+        "AddShowCallback(callbacks::AirHasYaw)",
+        "AddShowCallback(callbacks::IsAirDirCustom)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "AntiAimTab.base_angle_air",
+      "category": "anti-aim",
+      "member": "base_angle_air",
+      "type": "Dropdown",
+      "label": "base angle",
+      "config_id": "base_angle_air",
+      "column": 0,
+      "setup": "XOR(\"base angle\"),XOR(\"base_angle_air\"),{XOR(\"off\"),XOR(\"static\"),XOR(\"away crosshair\"),XOR(\"away distance\")}",
+      "calls": [
+        "AddShowCallback(callbacks::IsAntiAimModeAir)",
+        "AddShowCallback(callbacks::AirHasYaw)"
+      ],
+      "choices": [
+        "off",
+        "static",
+        "away crosshair",
+        "away distance"
+      ]
+    },
+    {
+      "key": "AntiAimTab.body_fake_air",
+      "category": "anti-aim",
+      "member": "body_fake_air",
+      "type": "Dropdown",
+      "label": "fake body",
+      "config_id": "body_fake_air",
+      "column": 0,
+      "setup": "XOR(\"fake body\"),XOR(\"body_fake_air\"),{XOR(\"off\"),XOR(\"left\"),XOR(\"right\"),XOR(\"opposite\")}",
+      "calls": [
+        "AddShowCallback(callbacks::IsAntiAimModeAir)",
+        "AddShowCallback(callbacks::AirHasYaw)"
+      ],
+      "choices": [
+        "off",
+        "left",
+        "right",
+        "opposite"
+      ]
+    },
+    {
+      "key": "AntiAimTab.fake_yaw",
+      "category": "anti-aim",
+      "member": "fake_yaw",
+      "type": "Dropdown",
+      "label": "fake yaw",
+      "config_id": "fake_yaw",
+      "column": 1,
+      "setup": "XOR(\"fake yaw\"),XOR(\"fake_yaw\"),{XOR(\"off\"),XOR(\"default\"),XOR(\"relative\"),XOR(\"jitter\"),XOR(\"rotate\"),XOR(\"random\"),XOR(\"local view\")}",
+      "calls": [],
+      "choices": [
+        "off",
+        "default",
+        "relative",
+        "jitter",
+        "rotate",
+        "random",
+        "local view"
+      ]
+    },
+    {
+      "key": "AntiAimTab.fake_relative",
+      "category": "anti-aim",
+      "member": "fake_relative",
+      "type": "Slider",
+      "label": "",
+      "config_id": "fake_relative",
+      "column": 1,
+      "setup": "\"\",XOR(\"fake_relative\"),-90.f,90.f,false,0,0.f,5.f,XOR(L\"\\u00B0\")",
+      "calls": [
+        "AddShowCallback(callbacks::IsFakeAntiAimRelative)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "AntiAimTab.fake_jitter_range",
+      "category": "anti-aim",
+      "member": "fake_jitter_range",
+      "type": "Slider",
+      "label": "",
+      "config_id": "fake_jitter_range",
+      "column": 1,
+      "setup": "\"\",XOR(\"fake_jitter_range\"),1.f,90.f,false,0,0.f,5.f,XOR(L\"\\u00B0\")",
+      "calls": [
+        "AddShowCallback(callbacks::IsFakeAntiAimJitter)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "AntiAimTab.lag_enable",
+      "category": "anti-aim",
+      "member": "lag_enable",
+      "type": "Checkbox",
+      "label": "fake-lag",
+      "config_id": "lag_enable",
+      "column": 1,
+      "setup": "XOR(\"fake-lag\"),XOR(\"lag_enable\")",
+      "calls": [],
+      "choices": []
+    },
+    {
+      "key": "AntiAimTab.lag_active",
+      "category": "anti-aim",
+      "member": "lag_active",
+      "type": "MultiDropdown",
+      "label": "",
+      "config_id": "lag_active",
+      "column": 1,
+      "setup": "\"\",XOR(\"lag_active\"),{XOR(\"move\"),XOR(\"air\"),XOR(\"crouch\")},false",
+      "calls": [],
+      "choices": [
+        "move",
+        "air",
+        "crouch"
+      ]
+    },
+    {
+      "key": "AntiAimTab.lag_mode",
+      "category": "anti-aim",
+      "member": "lag_mode",
+      "type": "Dropdown",
+      "label": "",
+      "config_id": "lag_mode",
+      "column": 1,
+      "setup": "\"\",XOR(\"lag_mode\"),{XOR(\"max\"),XOR(\"break\"),XOR(\"random\"),XOR(\"break step\")},false",
+      "calls": [],
+      "choices": [
+        "max",
+        "break",
+        "random",
+        "break step"
+      ]
+    },
+    {
+      "key": "AntiAimTab.lag_limit",
+      "category": "anti-aim",
+      "member": "lag_limit",
+      "type": "Slider",
+      "label": "limit",
+      "config_id": "lag_limit",
+      "column": 1,
+      "setup": "XOR(\"limit\"),XOR(\"lag_limit\"),2,16,true,0,2,1.f",
+      "calls": [],
+      "choices": []
+    },
+    {
+      "key": "AntiAimTab.lag_land",
+      "category": "anti-aim",
+      "member": "lag_land",
+      "type": "Checkbox",
+      "label": "on land",
+      "config_id": "lag_land",
+      "column": 1,
+      "setup": "XOR(\"on land\"),XOR(\"lag_land\")",
+      "calls": [],
+      "choices": []
+    },
+    {
+      "key": "AntiAimTab.preset",
+      "category": "anti-aim",
+      "member": "preset",
+      "type": "Dropdown",
+      "label": "preset for selected state",
+      "config_id": "preset",
+      "column": 1,
+      "setup": "XOR(\"preset for selected state\"),XOR(\"preset\"),{XOR(\"off\"),XOR(\"backwards\"),XOR(\"jitter\"),XOR(\"rotate\")}",
+      "calls": [],
+      "choices": [
+        "off",
+        "backwards",
+        "jitter",
+        "rotate"
+      ]
+    },
+    {
+      "key": "AntiAimTab.apply_preset",
+      "category": "anti-aim",
+      "member": "apply_preset",
+      "type": "Button",
+      "label": "apply preset",
+      "config_id": null,
+      "column": 1,
+      "setup": "XOR(\"apply preset\")",
+      "calls": [
+        "SetCallback(callbacks::ApplyAntiAimPreset)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "PlayersTab.box",
+      "category": "players",
+      "member": "box",
+      "type": "MultiDropdown",
+      "label": "boxes",
+      "config_id": "box",
+      "column": 0,
+      "setup": "XOR(\"boxes\"),XOR(\"box\"),{XOR(\"enemy\"),XOR(\"friendly\")}",
+      "calls": [],
+      "choices": [
+        "enemy",
+        "friendly"
+      ]
+    },
+    {
+      "key": "PlayersTab.box_enemy",
+      "category": "players",
+      "member": "box_enemy",
+      "type": "Colorpicker",
+      "label": "box enemy color",
+      "config_id": "box_enemy",
+      "column": 0,
+      "setup": "XOR(\"box enemy color\"),XOR(\"box_enemy\"),{150,200,60}",
+      "calls": [],
+      "choices": []
+    },
+    {
+      "key": "PlayersTab.box_friendly",
+      "category": "players",
+      "member": "box_friendly",
+      "type": "Colorpicker",
+      "label": "box friendly color",
+      "config_id": "box_friendly",
+      "column": 0,
+      "setup": "XOR(\"box friendly color\"),XOR(\"box_friendly\"),{255,200,0}",
+      "calls": [],
+      "choices": []
+    },
+    {
+      "key": "PlayersTab.dormant",
+      "category": "players",
+      "member": "dormant",
+      "type": "Checkbox",
+      "label": "dormant enemies",
+      "config_id": "dormant",
+      "column": 0,
+      "setup": "XOR(\"dormant enemies\"),XOR(\"dormant\")",
+      "calls": [],
+      "choices": []
+    },
+    {
+      "key": "PlayersTab.offscreen",
+      "category": "players",
+      "member": "offscreen",
+      "type": "Checkbox",
+      "label": "enemy offscreen esp",
+      "config_id": "offscreen",
+      "column": 0,
+      "setup": "XOR(\"enemy offscreen esp\"),XOR(\"offscreen\")",
+      "calls": [],
+      "choices": []
+    },
+    {
+      "key": "PlayersTab.offscreen_color",
+      "category": "players",
+      "member": "offscreen_color",
+      "type": "Colorpicker",
+      "label": "offscreen esp color",
+      "config_id": "offscreen_color",
+      "column": 0,
+      "setup": "XOR(\"offscreen esp color\"),XOR(\"offscreen_color\"),colors::white",
+      "calls": [],
+      "choices": []
+    },
+    {
+      "key": "PlayersTab.name",
+      "category": "players",
+      "member": "name",
+      "type": "MultiDropdown",
+      "label": "name",
+      "config_id": "name",
+      "column": 0,
+      "setup": "XOR(\"name\"),XOR(\"name\"),{XOR(\"enemy\"),XOR(\"friendly\")}",
+      "calls": [],
+      "choices": [
+        "enemy",
+        "friendly"
+      ]
+    },
+    {
+      "key": "PlayersTab.name_color",
+      "category": "players",
+      "member": "name_color",
+      "type": "Colorpicker",
+      "label": "name color",
+      "config_id": "name_color",
+      "column": 0,
+      "setup": "XOR(\"name color\"),XOR(\"name_color\"),colors::white",
+      "calls": [],
+      "choices": []
+    },
+    {
+      "key": "PlayersTab.health",
+      "category": "players",
+      "member": "health",
+      "type": "MultiDropdown",
+      "label": "health",
+      "config_id": "health",
+      "column": 0,
+      "setup": "XOR(\"health\"),XOR(\"health\"),{XOR(\"enemy\"),XOR(\"friendly\")}",
+      "calls": [],
+      "choices": [
+        "enemy",
+        "friendly"
+      ]
+    },
+    {
+      "key": "PlayersTab.flags_enemy",
+      "category": "players",
+      "member": "flags_enemy",
+      "type": "MultiDropdown",
+      "label": "flags enemy",
+      "config_id": "flags_enemy",
+      "column": 0,
+      "setup": "XOR(\"flags enemy\"),XOR(\"flags_enemy\"),{XOR(\"money\"),XOR(\"armor\"),XOR(\"scoped\"),XOR(\"flashed\"),XOR(\"reloading\"),XOR(\"bomb\")}",
+      "calls": [],
+      "choices": [
+        "money",
+        "armor",
+        "scoped",
+        "flashed",
+        "reloading",
+        "bomb"
+      ]
+    },
+    {
+      "key": "PlayersTab.flags_friendly",
+      "category": "players",
+      "member": "flags_friendly",
+      "type": "MultiDropdown",
+      "label": "flags friendly",
+      "config_id": "flags_friendly",
+      "column": 0,
+      "setup": "XOR(\"flags friendly\"),XOR(\"flags_friendly\"),{XOR(\"money\"),XOR(\"armor\"),XOR(\"scoped\"),XOR(\"flashed\"),XOR(\"reloading\"),XOR(\"bomb\")}",
+      "calls": [],
+      "choices": [
+        "money",
+        "armor",
+        "scoped",
+        "flashed",
+        "reloading",
+        "bomb"
+      ]
+    },
+    {
+      "key": "PlayersTab.weapon",
+      "category": "players",
+      "member": "weapon",
+      "type": "MultiDropdown",
+      "label": "weapon",
+      "config_id": "weapon",
+      "column": 0,
+      "setup": "XOR(\"weapon\"),XOR(\"weapon\"),{XOR(\"enemy\"),XOR(\"friendly\")}",
+      "calls": [],
+      "choices": [
+        "enemy",
+        "friendly"
+      ]
+    },
+    {
+      "key": "PlayersTab.weapon_mode",
+      "category": "players",
+      "member": "weapon_mode",
+      "type": "Dropdown",
+      "label": "",
+      "config_id": "weapon_mode",
+      "column": 0,
+      "setup": "\"\",XOR(\"weapon_mode\"),{XOR(\"text\"),XOR(\"icon\")},false",
+      "calls": [],
+      "choices": [
+        "text",
+        "icon"
+      ]
+    },
+    {
+      "key": "PlayersTab.ammo",
+      "category": "players",
+      "member": "ammo",
+      "type": "Checkbox",
+      "label": "ammo",
+      "config_id": "ammo",
+      "column": 0,
+      "setup": "XOR(\"ammo\"),XOR(\"ammo\")",
+      "calls": [],
+      "choices": []
+    },
+    {
+      "key": "PlayersTab.ammo_color",
+      "category": "players",
+      "member": "ammo_color",
+      "type": "Colorpicker",
+      "label": "color",
+      "config_id": "ammo_color",
+      "column": 0,
+      "setup": "XOR(\"color\"),XOR(\"ammo_color\"),colors::burgundy",
+      "calls": [],
+      "choices": []
+    },
+    {
+      "key": "PlayersTab.lby_update",
+      "category": "players",
+      "member": "lby_update",
+      "type": "Checkbox",
+      "label": "lby update",
+      "config_id": "lby_update",
+      "column": 0,
+      "setup": "XOR(\"lby update\"),XOR(\"lby_update\")",
+      "calls": [],
+      "choices": []
+    },
+    {
+      "key": "PlayersTab.lby_update_color",
+      "category": "players",
+      "member": "lby_update_color",
+      "type": "Colorpicker",
+      "label": "color",
+      "config_id": "lby_update_color",
+      "column": 0,
+      "setup": "XOR(\"color\"),XOR(\"lby_update_color\"),colors::orange",
+      "calls": [],
+      "choices": []
+    },
+    {
+      "key": "PlayersTab.skeleton",
+      "category": "players",
+      "member": "skeleton",
+      "type": "MultiDropdown",
+      "label": "skeleton",
+      "config_id": "skeleton",
+      "column": 1,
+      "setup": "XOR(\"skeleton\"),XOR(\"skeleton\"),{XOR(\"enemy\"),XOR(\"friendly\")}",
+      "calls": [],
+      "choices": [
+        "enemy",
+        "friendly"
+      ]
+    },
+    {
+      "key": "PlayersTab.skeleton_enemy",
+      "category": "players",
+      "member": "skeleton_enemy",
+      "type": "Colorpicker",
+      "label": "enemy color",
+      "config_id": "skeleton_enemy",
+      "column": 1,
+      "setup": "XOR(\"enemy color\"),XOR(\"skeleton_enemy\"),{255,255,255}",
+      "calls": [],
+      "choices": []
+    },
+    {
+      "key": "PlayersTab.skeleton_friendly",
+      "category": "players",
+      "member": "skeleton_friendly",
+      "type": "Colorpicker",
+      "label": "friendly color",
+      "config_id": "skeleton_friendly",
+      "column": 1,
+      "setup": "XOR(\"friendly color\"),XOR(\"skeleton_friendly\"),{255,255,255}",
+      "calls": [],
+      "choices": []
+    },
+    {
+      "key": "PlayersTab.glow",
+      "category": "players",
+      "member": "glow",
+      "type": "MultiDropdown",
+      "label": "glow",
+      "config_id": "glow",
+      "column": 1,
+      "setup": "XOR(\"glow\"),XOR(\"glow\"),{XOR(\"enemy\"),XOR(\"friendly\")}",
+      "calls": [],
+      "choices": [
+        "enemy",
+        "friendly"
+      ]
+    },
+    {
+      "key": "PlayersTab.glow_enemy",
+      "category": "players",
+      "member": "glow_enemy",
+      "type": "Colorpicker",
+      "label": "enemy color",
+      "config_id": "glow_enemy",
+      "column": 1,
+      "setup": "XOR(\"enemy color\"),XOR(\"glow_enemy\"),{150,200,60}",
+      "calls": [],
+      "choices": []
+    },
+    {
+      "key": "PlayersTab.glow_friendly",
+      "category": "players",
+      "member": "glow_friendly",
+      "type": "Colorpicker",
+      "label": "friendly color",
+      "config_id": "glow_friendly",
+      "column": 1,
+      "setup": "XOR(\"friendly color\"),XOR(\"glow_friendly\"),{150,200,60}",
+      "calls": [],
+      "choices": []
+    },
+    {
+      "key": "PlayersTab.glow_blend",
+      "category": "players",
+      "member": "glow_blend",
+      "type": "Slider",
+      "label": "",
+      "config_id": "glow_blend",
+      "column": 1,
+      "setup": "\"\",XOR(\"glow_blend\"),10.f,100.f,false,0,60.f,1.f,XOR(L\"%\")",
+      "calls": [],
+      "choices": []
+    },
+    {
+      "key": "PlayersTab.chams_enemy",
+      "category": "players",
+      "member": "chams_enemy",
+      "type": "MultiDropdown",
+      "label": "chams enemy",
+      "config_id": "chams_enemy",
+      "column": 1,
+      "setup": "XOR(\"chams enemy\"),XOR(\"chams_enemy\"),{XOR(\"visible\"),XOR(\"invisible\")}",
+      "calls": [],
+      "choices": [
+        "visible",
+        "invisible"
+      ]
+    },
+    {
+      "key": "PlayersTab.chams_enemy_vis",
+      "category": "players",
+      "member": "chams_enemy_vis",
+      "type": "Colorpicker",
+      "label": "color visible",
+      "config_id": "chams_enemy_vis",
+      "column": 1,
+      "setup": "XOR(\"color visible\"),XOR(\"chams_enemy_vis\"),{150,200,60}",
+      "calls": [],
+      "choices": []
+    },
+    {
+      "key": "PlayersTab.chams_enemy_invis",
+      "category": "players",
+      "member": "chams_enemy_invis",
+      "type": "Colorpicker",
+      "label": "color invisible",
+      "config_id": "chams_enemy_invis",
+      "column": 1,
+      "setup": "XOR(\"color invisible\"),XOR(\"chams_enemy_invis\"),{60,180,225}",
+      "calls": [],
+      "choices": []
+    },
+    {
+      "key": "PlayersTab.chams_enemy_blend",
+      "category": "players",
+      "member": "chams_enemy_blend",
+      "type": "Slider",
+      "label": "",
+      "config_id": "chams_enemy_blend",
+      "column": 1,
+      "setup": "\"\",XOR(\"chams_enemy_blend\"),10.f,100.f,false,0,100.f,1.f,XOR(L\"%\")",
+      "calls": [],
+      "choices": []
+    },
+    {
+      "key": "PlayersTab.chams_enemy_history",
+      "category": "players",
+      "member": "chams_enemy_history",
+      "type": "Checkbox",
+      "label": "chams history",
+      "config_id": "chams_history",
+      "column": 1,
+      "setup": "XOR(\"chams history\"),XOR(\"chams_history\")",
+      "calls": [],
+      "choices": []
+    },
+    {
+      "key": "PlayersTab.chams_enemy_history_col",
+      "category": "players",
+      "member": "chams_enemy_history_col",
+      "type": "Colorpicker",
+      "label": "color",
+      "config_id": "chams_history_col",
+      "column": 1,
+      "setup": "XOR(\"color\"),XOR(\"chams_history_col\"),{255,255,200}",
+      "calls": [],
+      "choices": []
+    },
+    {
+      "key": "PlayersTab.chams_enemy_history_blend",
+      "category": "players",
+      "member": "chams_enemy_history_blend",
+      "type": "Slider",
+      "label": "",
+      "config_id": "chams_history_blend",
+      "column": 1,
+      "setup": "\"\",XOR(\"chams_history_blend\"),10.f,100.f,false,0,100.f,1.f,XOR(L\"%\")",
+      "calls": [],
+      "choices": []
+    },
+    {
+      "key": "PlayersTab.chams_friendly",
+      "category": "players",
+      "member": "chams_friendly",
+      "type": "MultiDropdown",
+      "label": "chams friendly",
+      "config_id": "chams_friendly",
+      "column": 1,
+      "setup": "XOR(\"chams friendly\"),XOR(\"chams_friendly\"),{XOR(\"visible\"),XOR(\"invisible\")}",
+      "calls": [],
+      "choices": [
+        "visible",
+        "invisible"
+      ]
+    },
+    {
+      "key": "PlayersTab.chams_friendly_vis",
+      "category": "players",
+      "member": "chams_friendly_vis",
+      "type": "Colorpicker",
+      "label": "color visible",
+      "config_id": "chams_friendly_vis",
+      "column": 1,
+      "setup": "XOR(\"color visible\"),XOR(\"chams_friendly_vis\"),{255,200,0}",
+      "calls": [],
+      "choices": []
+    },
+    {
+      "key": "PlayersTab.chams_friendly_invis",
+      "category": "players",
+      "member": "chams_friendly_invis",
+      "type": "Colorpicker",
+      "label": "color invisible",
+      "config_id": "chams_friendly_invis",
+      "column": 1,
+      "setup": "XOR(\"color invisible\"),XOR(\"chams_friendly_invis\"),{255,50,0}",
+      "calls": [],
+      "choices": []
+    },
+    {
+      "key": "PlayersTab.chams_local",
+      "category": "players",
+      "member": "chams_local",
+      "type": "MultiDropdown",
+      "label": "chams local",
+      "config_id": "chams_local",
+      "column": 1,
+      "setup": "XOR(\"chams local\"),XOR(\"chams_local\"),{XOR(\"real\"),XOR(\"fake\")}",
+      "calls": [],
+      "choices": [
+        "real",
+        "fake"
+      ]
+    },
+    {
+      "key": "PlayersTab.chams_friendly_blend",
+      "category": "players",
+      "member": "chams_friendly_blend",
+      "type": "Slider",
+      "label": "",
+      "config_id": "chams_friendly_blend",
+      "column": 1,
+      "setup": "\"\",XOR(\"chams_friendly_blend\"),10.f,100.f,false,0,100.f,1.f,XOR(L\"%\")",
+      "calls": [],
+      "choices": []
+    },
+    {
+      "key": "PlayersTab.chams_local_col",
+      "category": "players",
+      "member": "chams_local_col",
+      "type": "Colorpicker",
+      "label": "color",
+      "config_id": "chams_local_col",
+      "column": 1,
+      "setup": "XOR(\"color\"),XOR(\"chams_local_col\"),{255,255,200}",
+      "calls": [],
+      "choices": []
+    },
+    {
+      "key": "PlayersTab.chams_local_blend",
+      "category": "players",
+      "member": "chams_local_blend",
+      "type": "Slider",
+      "label": "",
+      "config_id": "chams_local_blend",
+      "column": 1,
+      "setup": "\"\",XOR(\"chams_local_blend\"),10.f,100.f,false,0,100.f,1.f,XOR(L\"%\")",
+      "calls": [],
+      "choices": []
+    },
+    {
+      "key": "PlayersTab.chams_local_ghost_col",
+      "category": "players",
+      "member": "chams_local_ghost_col",
+      "type": "Colorpicker",
+      "label": "fake color",
+      "config_id": "chams_local_ghost_col",
+      "column": 1,
+      "setup": "XOR(\"fake color\"),XOR(\"chams_local_ghost_col\"),{255,255,200}",
+      "calls": [],
+      "choices": []
+    },
+    {
+      "key": "PlayersTab.chams_local_ghost_blend",
+      "category": "players",
+      "member": "chams_local_ghost_blend",
+      "type": "Slider",
+      "label": "",
+      "config_id": "chams_local_ghost_blend",
+      "column": 1,
+      "setup": "\"\",XOR(\"chams_local_ghost_blend\"),10.f,100.f,false,0,100.f,1.f,XOR(L\"%\")",
+      "calls": [],
+      "choices": []
+    },
+    {
+      "key": "PlayersTab.chams_local_scope",
+      "category": "players",
+      "member": "chams_local_scope",
+      "type": "Checkbox",
+      "label": "blend when scoped",
+      "config_id": "chams_local_scope",
+      "column": 1,
+      "setup": "XOR(\"blend when scoped\"),XOR(\"chams_local_scope\")",
+      "calls": [],
+      "choices": []
+    },
+    {
+      "key": "ChamsStyleTab.material",
+      "category": "chams style",
+      "member": "material",
+      "type": "Dropdown",
+      "label": "material",
+      "config_id": "material",
+      "column": 0,
+      "setup": "XOR(\"material\"),XOR(\"material\"),{XOR(\"original\"),XOR(\"flat\"),XOR(\"wireframe\")}",
+      "calls": [],
+      "choices": [
+        "original",
+        "flat",
+        "wireframe"
+      ]
+    },
+    {
+      "key": "ChamsStyleTab.scoped_blend",
+      "category": "chams style",
+      "member": "scoped_blend",
+      "type": "Slider",
+      "label": "opacity when scoped",
+      "config_id": "scoped_blend",
+      "column": 0,
+      "setup": "XOR(\"opacity when scoped\"),XOR(\"scoped_blend\"),0.f,100.f,true,0,50.f,1.f,XOR(L\"%\")",
+      "calls": [],
+      "choices": []
+    },
+    {
+      "key": "VisualsTab.items",
+      "category": "visuals",
+      "member": "items",
+      "type": "Checkbox",
+      "label": "dropped weapons",
+      "config_id": "items",
+      "column": 0,
+      "setup": "XOR(\"dropped weapons\"),XOR(\"items\")",
+      "calls": [],
+      "choices": []
+    },
+    {
+      "key": "VisualsTab.ammo",
+      "category": "visuals",
+      "member": "ammo",
+      "type": "Checkbox",
+      "label": "dropped weapons ammo",
+      "config_id": "ammo",
+      "column": 0,
+      "setup": "XOR(\"dropped weapons ammo\"),XOR(\"ammo\")",
+      "calls": [],
+      "choices": []
+    },
+    {
+      "key": "VisualsTab.item_color",
+      "category": "visuals",
+      "member": "item_color",
+      "type": "Colorpicker",
+      "label": "color",
+      "config_id": "item_color",
+      "column": 0,
+      "setup": "XOR(\"color\"),XOR(\"item_color\"),colors::white",
+      "calls": [],
+      "choices": []
+    },
+    {
+      "key": "VisualsTab.proj",
+      "category": "visuals",
+      "member": "proj",
+      "type": "Checkbox",
+      "label": "projectiles",
+      "config_id": "proj",
+      "column": 0,
+      "setup": "XOR(\"projectiles\"),XOR(\"proj\")",
+      "calls": [],
+      "choices": []
+    },
+    {
+      "key": "VisualsTab.proj_color",
+      "category": "visuals",
+      "member": "proj_color",
+      "type": "Colorpicker",
+      "label": "color",
+      "config_id": "proj_color",
+      "column": 0,
+      "setup": "XOR(\"color\"),XOR(\"proj_color\"),colors::white",
+      "calls": [],
+      "choices": []
+    },
+    {
+      "key": "VisualsTab.proj_range",
+      "category": "visuals",
+      "member": "proj_range",
+      "type": "MultiDropdown",
+      "label": "projectile range",
+      "config_id": "proj_range",
+      "column": 0,
+      "setup": "XOR(\"projectile range\"),XOR(\"proj_range\"),{XOR(\"frag\"),XOR(\"molly\")}",
+      "calls": [],
+      "choices": [
+        "frag",
+        "molly"
+      ]
+    },
+    {
+      "key": "VisualsTab.proj_range_color",
+      "category": "visuals",
+      "member": "proj_range_color",
+      "type": "Colorpicker",
+      "label": "color",
+      "config_id": "proj_range_color",
+      "column": 0,
+      "setup": "XOR(\"color\"),XOR(\"proj_range_color\"),colors::burgundy",
+      "calls": [],
+      "choices": []
+    },
+    {
+      "key": "VisualsTab.planted_c4",
+      "category": "visuals",
+      "member": "planted_c4",
+      "type": "MultiDropdown",
+      "label": "planted c4",
+      "config_id": "planted_c4",
+      "column": 0,
+      "setup": "XOR(\"planted c4\"),XOR(\"planted_c4\"),{XOR(\"on screen (2D)\"),XOR(\"on bomb (3D)\")}",
+      "calls": [],
+      "choices": [
+        "on screen (2D)",
+        "on bomb (3D)"
+      ]
+    },
+    {
+      "key": "VisualsTab.disableteam",
+      "category": "visuals",
+      "member": "disableteam",
+      "type": "Checkbox",
+      "label": "do not render teammates",
+      "config_id": "disableteam",
+      "column": 0,
+      "setup": "XOR(\"do not render teammates\"),XOR(\"disableteam\")",
+      "calls": [],
+      "choices": []
+    },
+    {
+      "key": "VisualsTab.world",
+      "category": "visuals",
+      "member": "world",
+      "type": "Dropdown",
+      "label": "world",
+      "config_id": "world",
+      "column": 0,
+      "setup": "XOR(\"world\"),XOR(\"world\"),{XOR(\"off\"),XOR(\"night\"),XOR(\"fullbright\")}",
+      "calls": [
+        "SetCallback(Visuals::ModulateWorld)"
+      ],
+      "choices": [
+        "off",
+        "night",
+        "fullbright"
+      ]
+    },
+    {
+      "key": "VisualsTab.transparent_props",
+      "category": "visuals",
+      "member": "transparent_props",
+      "type": "Checkbox",
+      "label": "transparent props",
+      "config_id": "transparent_props",
+      "column": 0,
+      "setup": "XOR(\"transparent props\"),XOR(\"transparent_props\")",
+      "calls": [
+        "SetCallback(Visuals::ModulateWorld)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "VisualsTab.enemy_radar",
+      "category": "visuals",
+      "member": "enemy_radar",
+      "type": "Checkbox",
+      "label": "force enemies on radar",
+      "config_id": "enemy_radar",
+      "column": 0,
+      "setup": "XOR(\"force enemies on radar\"),XOR(\"enemy_radar\")",
+      "calls": [],
+      "choices": []
+    },
+    {
+      "key": "VisualsTab.novisrecoil",
+      "category": "visuals",
+      "member": "novisrecoil",
+      "type": "Checkbox",
+      "label": "remove visual recoil",
+      "config_id": "novisrecoil",
+      "column": 1,
+      "setup": "XOR(\"remove visual recoil\"),XOR(\"novisrecoil\")",
+      "calls": [],
+      "choices": []
+    },
+    {
+      "key": "VisualsTab.nosmoke",
+      "category": "visuals",
+      "member": "nosmoke",
+      "type": "Checkbox",
+      "label": "remove smoke grenades",
+      "config_id": "nosmoke",
+      "column": 1,
+      "setup": "XOR(\"remove smoke grenades\"),XOR(\"nosmoke\")",
+      "calls": [],
+      "choices": []
+    },
+    {
+      "key": "VisualsTab.nofog",
+      "category": "visuals",
+      "member": "nofog",
+      "type": "Checkbox",
+      "label": "remove fog",
+      "config_id": "nofog",
+      "column": 1,
+      "setup": "XOR(\"remove fog\"),XOR(\"nofog\")",
+      "calls": [],
+      "choices": []
+    },
+    {
+      "key": "VisualsTab.noflash",
+      "category": "visuals",
+      "member": "noflash",
+      "type": "Checkbox",
+      "label": "remove flashbangs",
+      "config_id": "noflash",
+      "column": 1,
+      "setup": "XOR(\"remove flashbangs\"),XOR(\"noflash\")",
+      "calls": [],
+      "choices": []
+    },
+    {
+      "key": "VisualsTab.noscope",
+      "category": "visuals",
+      "member": "noscope",
+      "type": "Checkbox",
+      "label": "remove scope",
+      "config_id": "noscope",
+      "column": 1,
+      "setup": "XOR(\"remove scope\"),XOR(\"noscope\")",
+      "calls": [],
+      "choices": []
+    },
+    {
+      "key": "VisualsTab.fov",
+      "category": "visuals",
+      "member": "fov",
+      "type": "Checkbox",
+      "label": "override fov",
+      "config_id": "fov",
+      "column": 1,
+      "setup": "XOR(\"override fov\"),XOR(\"fov\")",
+      "calls": [],
+      "choices": []
+    },
+    {
+      "key": "VisualsTab.fov_amt",
+      "category": "visuals",
+      "member": "fov_amt",
+      "type": "Slider",
+      "label": "",
+      "config_id": "fov_amt",
+      "column": 1,
+      "setup": "\"\",XOR(\"fov_amt\"),60.f,140.f,false,0,90.f,1.f,XOR(L\"\\u00B0\")",
+      "calls": [],
+      "choices": []
+    },
+    {
+      "key": "VisualsTab.fov_scoped",
+      "category": "visuals",
+      "member": "fov_scoped",
+      "type": "Checkbox",
+      "label": "override fov when scoped",
+      "config_id": "fov_scoped",
+      "column": 1,
+      "setup": "XOR(\"override fov when scoped\"),XOR(\"fov_scoped\")",
+      "calls": [],
+      "choices": []
+    },
+    {
+      "key": "VisualsTab.viewmodel_fov",
+      "category": "visuals",
+      "member": "viewmodel_fov",
+      "type": "Checkbox",
+      "label": "override viewmodel fov",
+      "config_id": "viewmodel_fov",
+      "column": 1,
+      "setup": "XOR(\"override viewmodel fov\"),XOR(\"viewmodel_fov\")",
+      "calls": [],
+      "choices": []
+    },
+    {
+      "key": "VisualsTab.viewmodel_fov_amt",
+      "category": "visuals",
+      "member": "viewmodel_fov_amt",
+      "type": "Slider",
+      "label": "",
+      "config_id": "viewmodel_fov_amt",
+      "column": 1,
+      "setup": "\"\",XOR(\"viewmodel_fov_amt\"),60.f,140.f,false,0,90.f,1.f,XOR(L\"\\u00B0\")",
+      "calls": [],
+      "choices": []
+    },
+    {
+      "key": "VisualsTab.spectators",
+      "category": "visuals",
+      "member": "spectators",
+      "type": "Checkbox",
+      "label": "show spectator list",
+      "config_id": "spectators",
+      "column": 1,
+      "setup": "XOR(\"show spectator list\"),XOR(\"spectators\")",
+      "calls": [],
+      "choices": []
+    },
+    {
+      "key": "VisualsTab.force_xhair",
+      "category": "visuals",
+      "member": "force_xhair",
+      "type": "Checkbox",
+      "label": "force crosshair",
+      "config_id": "force_xhair",
+      "column": 1,
+      "setup": "XOR(\"force crosshair\"),XOR(\"force_xhair\")",
+      "calls": [],
+      "choices": []
+    },
+    {
+      "key": "VisualsTab.spread_xhair",
+      "category": "visuals",
+      "member": "spread_xhair",
+      "type": "Checkbox",
+      "label": "visualize spread",
+      "config_id": "spread_xhair",
+      "column": 1,
+      "setup": "XOR(\"visualize spread\"),XOR(\"spread_xhair\")",
+      "calls": [],
+      "choices": []
+    },
+    {
+      "key": "VisualsTab.spread_xhair_col",
+      "category": "visuals",
+      "member": "spread_xhair_col",
+      "type": "Colorpicker",
+      "label": "visualize spread color",
+      "config_id": "spread_xhair_col",
+      "column": 1,
+      "setup": "XOR(\"visualize spread color\"),XOR(\"spread_xhair_col\"),colors::burgundy",
+      "calls": [],
+      "choices": []
+    },
+    {
+      "key": "VisualsTab.spread_xhair_blend",
+      "category": "visuals",
+      "member": "spread_xhair_blend",
+      "type": "Slider",
+      "label": "",
+      "config_id": "spread_xhair_blend",
+      "column": 1,
+      "setup": "\"\",XOR(\"spread_xhair_blend\"),10.f,100.f,false,0,100.f,1.f,XOR(L\"%\")",
+      "calls": [],
+      "choices": []
+    },
+    {
+      "key": "VisualsTab.pen_crosshair",
+      "category": "visuals",
+      "member": "pen_crosshair",
+      "type": "Checkbox",
+      "label": "penetration crosshair",
+      "config_id": "pen_xhair",
+      "column": 1,
+      "setup": "XOR(\"penetration crosshair\"),XOR(\"pen_xhair\")",
+      "calls": [],
+      "choices": []
+    },
+    {
+      "key": "VisualsTab.indicators",
+      "category": "visuals",
+      "member": "indicators",
+      "type": "MultiDropdown",
+      "label": "indicators",
+      "config_id": "indicators",
+      "column": 1,
+      "setup": "XOR(\"indicators\"),XOR(\"indicators\"),{XOR(\"lby\"),XOR(\"lag compensation\"),XOR(\"fake latency\")}",
+      "calls": [],
+      "choices": [
+        "lby",
+        "lag compensation",
+        "fake latency"
+      ]
+    },
+    {
+      "key": "VisualsTab.tracers",
+      "category": "visuals",
+      "member": "tracers",
+      "type": "Checkbox",
+      "label": "grenade simulation",
+      "config_id": "tracers",
+      "column": 1,
+      "setup": "XOR(\"grenade simulation\"),XOR(\"tracers\")",
+      "calls": [],
+      "choices": []
+    },
+    {
+      "key": "VisualsTab.impact_beams",
+      "category": "visuals",
+      "member": "impact_beams",
+      "type": "Checkbox",
+      "label": "impact beams",
+      "config_id": "impact_beams",
+      "column": 1,
+      "setup": "XOR(\"impact beams\"),XOR(\"impact_beams\")",
+      "calls": [],
+      "choices": []
+    },
+    {
+      "key": "VisualsTab.impact_beams_color",
+      "category": "visuals",
+      "member": "impact_beams_color",
+      "type": "Colorpicker",
+      "label": "impact beams color",
+      "config_id": "impact_beams_color",
+      "column": 1,
+      "setup": "XOR(\"impact beams color\"),XOR(\"impact_beams_color\"),colors::light_blue",
+      "calls": [],
+      "choices": []
+    },
+    {
+      "key": "VisualsTab.impact_beams_hurt_color",
+      "category": "visuals",
+      "member": "impact_beams_hurt_color",
+      "type": "Colorpicker",
+      "label": "impact beams hurt color",
+      "config_id": "impact_beams_hurt_color",
+      "column": 1,
+      "setup": "XOR(\"impact beams hurt color\"),XOR(\"impact_beams_hurt_color\"),colors::red",
+      "calls": [],
+      "choices": []
+    },
+    {
+      "key": "VisualsTab.impact_beams_time",
+      "category": "visuals",
+      "member": "impact_beams_time",
+      "type": "Slider",
+      "label": "impact beams time",
+      "config_id": "impact_beams_time",
+      "column": 1,
+      "setup": "XOR(\"impact beams time\"),XOR(\"impact_beams_time\"),1.f,10.f,true,0,1.f,1.f,XOR(L\"s\")",
+      "calls": [],
+      "choices": []
+    },
+    {
+      "key": "VisualsTab.thirdperson",
+      "category": "visuals",
+      "member": "thirdperson",
+      "type": "Keybind",
+      "label": "thirdperson",
+      "config_id": "thirdperson",
+      "column": 1,
+      "setup": "XOR(\"thirdperson\"),XOR(\"thirdperson\")",
+      "calls": [
+        "SetToggleCallback(callbacks::ToggleThirdPerson)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "VisualsTab.thirdperson_distance",
+      "category": "visuals",
+      "member": "thirdperson_distance",
+      "type": "Slider",
+      "label": " ",
+      "config_id": "thirdperson_distance",
+      "column": 1,
+      "setup": "XOR(\" \"),XOR(\"thirdperson_distance\"),50.f,300.f,false,0,150.f,1.f,XOR(L\"\\u00B0\")",
+      "calls": [],
+      "choices": []
+    },
+    {
+      "key": "MovementTab.bhop",
+      "category": "movement",
+      "member": "bhop",
+      "type": "Checkbox",
+      "label": "automatic jump",
+      "config_id": "bhop",
+      "column": 0,
+      "setup": "XOR(\"automatic jump\"),XOR(\"bhop\")",
+      "calls": [],
+      "choices": []
+    },
+    {
+      "key": "MovementTab.airduck",
+      "category": "movement",
+      "member": "airduck",
+      "type": "Checkbox",
+      "label": "duck in air",
+      "config_id": "airduck",
+      "column": 0,
+      "setup": "XOR(\"duck in air\"),XOR(\"airduck\")",
+      "calls": [],
+      "choices": []
+    },
+    {
+      "key": "MovementTab.autostrafe",
+      "category": "movement",
+      "member": "autostrafe",
+      "type": "Checkbox",
+      "label": "automatic strafe",
+      "config_id": "autostrafe",
+      "column": 0,
+      "setup": "XOR(\"automatic strafe\"),XOR(\"autostrafe\")",
+      "calls": [],
+      "choices": []
+    },
+    {
+      "key": "MovementTab.cstrafe",
+      "category": "movement",
+      "member": "cstrafe",
+      "type": "Keybind",
+      "label": "c-strafe",
+      "config_id": "cstrafe",
+      "column": 0,
+      "setup": "XOR(\"c-strafe\"),XOR(\"cstrafe\")",
+      "calls": [],
+      "choices": []
+    },
+    {
+      "key": "MovementTab.astrafe",
+      "category": "movement",
+      "member": "astrafe",
+      "type": "Keybind",
+      "label": "a-strafe",
+      "config_id": "astrafe",
+      "column": 0,
+      "setup": "XOR(\"a-strafe\"),XOR(\"astrafe\")",
+      "calls": [],
+      "choices": []
+    },
+    {
+      "key": "MovementTab.zstrafe",
+      "category": "movement",
+      "member": "zstrafe",
+      "type": "Keybind",
+      "label": "z-strafe",
+      "config_id": "zstrafe",
+      "column": 0,
+      "setup": "XOR(\"z-strafe\"),XOR(\"zstrafe\")",
+      "calls": [],
+      "choices": []
+    },
+    {
+      "key": "MovementTab.z_freq",
+      "category": "movement",
+      "member": "z_freq",
+      "type": "Slider",
+      "label": "",
+      "config_id": "z_freq",
+      "column": 0,
+      "setup": "\"\",XOR(\"z_freq\"),1.f,100.f,false,0,50.f,0.5f,XOR(L\"hz\")",
+      "calls": [],
+      "choices": []
+    },
+    {
+      "key": "MovementTab.z_dist",
+      "category": "movement",
+      "member": "z_dist",
+      "type": "Slider",
+      "label": "",
+      "config_id": "z_dist",
+      "column": 0,
+      "setup": "\"\",XOR(\"z_dist\"),1.f,100.f,false,0,20.f,0.5f,XOR(L\"%\")",
+      "calls": [],
+      "choices": []
+    },
+    {
+      "key": "MovementTab.fakewalk",
+      "category": "movement",
+      "member": "fakewalk",
+      "type": "Keybind",
+      "label": "fake-walk",
+      "config_id": "fakewalk",
+      "column": 1,
+      "setup": "XOR(\"fake-walk\"),XOR(\"fakewalk\")",
+      "calls": [],
+      "choices": []
+    },
+    {
+      "key": "MovementTab.autopeek",
+      "category": "movement",
+      "member": "autopeek",
+      "type": "Keybind",
+      "label": "automatic peek",
+      "config_id": "autopeek",
+      "column": 1,
+      "setup": "XOR(\"automatic peek\"),XOR(\"autopeek\")",
+      "calls": [],
+      "choices": []
+    },
+    {
+      "key": "MovementTab.autostop_always_on",
+      "category": "movement",
+      "member": "autostop_always_on",
+      "type": "Checkbox",
+      "label": "automatic stop always on",
+      "config_id": "auto_stop_always",
+      "column": 1,
+      "setup": "XOR(\"automatic stop always on\"),XOR(\"auto_stop_always\")",
+      "calls": [],
+      "choices": []
+    },
+    {
+      "key": "MovementTab.autostop",
+      "category": "movement",
+      "member": "autostop",
+      "type": "Keybind",
+      "label": "automatic stop",
+      "config_id": "autostop",
+      "column": 1,
+      "setup": "XOR(\"automatic stop\"),XOR(\"autostop\")",
+      "calls": [
+        "AddShowCallback(callbacks::AUTO_STOP)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.enable",
+      "category": "skins",
+      "member": "enable",
+      "type": "Checkbox",
+      "label": "enable",
+      "config_id": "skins_enable",
+      "column": 0,
+      "setup": "XOR(\"enable\"),XOR(\"skins_enable\")",
+      "calls": [
+        "SetCallback(callbacks::ForceFullUpdate)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.id_deagle",
+      "category": "skins",
+      "member": "id_deagle",
+      "type": "Edit",
+      "label": "paintkit id",
+      "config_id": "id_deagle",
+      "column": 0,
+      "setup": "XOR(\"paintkit id\"),XOR(\"id_deagle\"),3",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::DEAGLE)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.stattrak_deagle",
+      "category": "skins",
+      "member": "stattrak_deagle",
+      "type": "Checkbox",
+      "label": "stattrak",
+      "config_id": "stattrak_deagle",
+      "column": 0,
+      "setup": "XOR(\"stattrak\"),XOR(\"stattrak_deagle\")",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::DEAGLE)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.quality_deagle",
+      "category": "skins",
+      "member": "quality_deagle",
+      "type": "Slider",
+      "label": "quality",
+      "config_id": "quality_deagle",
+      "column": 0,
+      "setup": "XOR(\"quality\"),XOR(\"quality_deagle\"),1.f,100.f,true,0,100.f,1.f,XOR(L\"%\")",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::DEAGLE)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.seed_deagle",
+      "category": "skins",
+      "member": "seed_deagle",
+      "type": "Slider",
+      "label": "seed",
+      "config_id": "seed_deagle",
+      "column": 0,
+      "setup": "XOR(\"seed\"),XOR(\"seed_deagle\"),0.f,255.f,true,0,0.f,1.f",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::DEAGLE)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.id_elite",
+      "category": "skins",
+      "member": "id_elite",
+      "type": "Edit",
+      "label": "paintkit id",
+      "config_id": "id_elite",
+      "column": 0,
+      "setup": "XOR(\"paintkit id\"),XOR(\"id_elite\"),3",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::ELITE)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.stattrak_elite",
+      "category": "skins",
+      "member": "stattrak_elite",
+      "type": "Checkbox",
+      "label": "stattrak",
+      "config_id": "stattrak_elite",
+      "column": 0,
+      "setup": "XOR(\"stattrak\"),XOR(\"stattrak_elite\")",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::ELITE)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.quality_elite",
+      "category": "skins",
+      "member": "quality_elite",
+      "type": "Slider",
+      "label": "quality",
+      "config_id": "quality_elite",
+      "column": 0,
+      "setup": "XOR(\"quality\"),XOR(\"quality_elite\"),1.f,100.f,true,0,100.f,1.f,XOR(L\"%\")",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::ELITE)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.seed_elite",
+      "category": "skins",
+      "member": "seed_elite",
+      "type": "Slider",
+      "label": "seed",
+      "config_id": "seed_elite",
+      "column": 0,
+      "setup": "XOR(\"seed\"),XOR(\"seed_elite\"),0.f,255.f,true,0,0.f,1.f",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::ELITE)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.id_fiveseven",
+      "category": "skins",
+      "member": "id_fiveseven",
+      "type": "Edit",
+      "label": "paintkit id",
+      "config_id": "id_fiveseven",
+      "column": 0,
+      "setup": "XOR(\"paintkit id\"),XOR(\"id_fiveseven\"),3",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::FIVESEVEN)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.stattrak_fiveseven",
+      "category": "skins",
+      "member": "stattrak_fiveseven",
+      "type": "Checkbox",
+      "label": "stattrak",
+      "config_id": "stattrak_fiveseven",
+      "column": 0,
+      "setup": "XOR(\"stattrak\"),XOR(\"stattrak_fiveseven\")",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::FIVESEVEN)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.quality_fiveseven",
+      "category": "skins",
+      "member": "quality_fiveseven",
+      "type": "Slider",
+      "label": "quality",
+      "config_id": "quality_fiveseven",
+      "column": 0,
+      "setup": "XOR(\"quality\"),XOR(\"quality_fiveseven\"),1.f,100.f,true,0,100.f,1.f,XOR(L\"%\")",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::FIVESEVEN)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.seed_fiveseven",
+      "category": "skins",
+      "member": "seed_fiveseven",
+      "type": "Slider",
+      "label": "seed",
+      "config_id": "seed_fiveseven",
+      "column": 0,
+      "setup": "XOR(\"seed\"),XOR(\"seed_fiveseven\"),0.f,255.f,true,0,0.f,1.f",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::FIVESEVEN)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.id_glock",
+      "category": "skins",
+      "member": "id_glock",
+      "type": "Edit",
+      "label": "paintkit id",
+      "config_id": "id_glock",
+      "column": 0,
+      "setup": "XOR(\"paintkit id\"),XOR(\"id_glock\"),3",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::GLOCK)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.stattrak_glock",
+      "category": "skins",
+      "member": "stattrak_glock",
+      "type": "Checkbox",
+      "label": "stattrak",
+      "config_id": "stattrak_glock",
+      "column": 0,
+      "setup": "XOR(\"stattrak\"),XOR(\"stattrak_glock\")",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::GLOCK)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.quality_glock",
+      "category": "skins",
+      "member": "quality_glock",
+      "type": "Slider",
+      "label": "quality",
+      "config_id": "quality_glock",
+      "column": 0,
+      "setup": "XOR(\"quality\"),XOR(\"quality_glock\"),1.f,100.f,true,0,100.f,1.f,XOR(L\"%\")",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::GLOCK)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.seed_glock",
+      "category": "skins",
+      "member": "seed_glock",
+      "type": "Slider",
+      "label": "seed",
+      "config_id": "seed_glock",
+      "column": 0,
+      "setup": "XOR(\"seed\"),XOR(\"seed_glock\"),0.f,255.f,true,0,0.f,1.f",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::GLOCK)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.id_ak47",
+      "category": "skins",
+      "member": "id_ak47",
+      "type": "Edit",
+      "label": "paintkit id",
+      "config_id": "id_ak47",
+      "column": 0,
+      "setup": "XOR(\"paintkit id\"),XOR(\"id_ak47\"),3",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::AK47)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.stattrak_ak47",
+      "category": "skins",
+      "member": "stattrak_ak47",
+      "type": "Checkbox",
+      "label": "stattrak",
+      "config_id": "stattrak_ak47",
+      "column": 0,
+      "setup": "XOR(\"stattrak\"),XOR(\"stattrak_ak47\")",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::AK47)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.quality_ak47",
+      "category": "skins",
+      "member": "quality_ak47",
+      "type": "Slider",
+      "label": "quality",
+      "config_id": "quality_ak47",
+      "column": 0,
+      "setup": "XOR(\"quality\"),XOR(\"quality_ak47\"),1.f,100.f,true,0,100.f,1.f,XOR(L\"%\")",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::AK47)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.seed_ak47",
+      "category": "skins",
+      "member": "seed_ak47",
+      "type": "Slider",
+      "label": "seed",
+      "config_id": "seed_ak47",
+      "column": 0,
+      "setup": "XOR(\"seed\"),XOR(\"seed_ak47\"),0.f,255.f,true,0,0.f,1.f",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::AK47)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.id_aug",
+      "category": "skins",
+      "member": "id_aug",
+      "type": "Edit",
+      "label": "paintkit id",
+      "config_id": "id_aug",
+      "column": 0,
+      "setup": "XOR(\"paintkit id\"),XOR(\"id_aug\"),3",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::AUG)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.stattrak_aug",
+      "category": "skins",
+      "member": "stattrak_aug",
+      "type": "Checkbox",
+      "label": "stattrak",
+      "config_id": "stattrak_aug",
+      "column": 0,
+      "setup": "XOR(\"stattrak\"),XOR(\"stattrak_aug\")",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::AUG)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.quality_aug",
+      "category": "skins",
+      "member": "quality_aug",
+      "type": "Slider",
+      "label": "quality",
+      "config_id": "quality_aug",
+      "column": 0,
+      "setup": "XOR(\"quality\"),XOR(\"quality_aug\"),1.f,100.f,true,0,100.f,1.f,XOR(L\"%\")",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::AUG)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.seed_aug",
+      "category": "skins",
+      "member": "seed_aug",
+      "type": "Slider",
+      "label": "seed",
+      "config_id": "seed_aug",
+      "column": 0,
+      "setup": "XOR(\"seed\"),XOR(\"seed_aug\"),0.f,255.f,true,0,0.f,1.f",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::AUG)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.id_awp",
+      "category": "skins",
+      "member": "id_awp",
+      "type": "Edit",
+      "label": "paintkit id",
+      "config_id": "id_awp",
+      "column": 0,
+      "setup": "XOR(\"paintkit id\"),XOR(\"id_awp\"),3",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::AWP)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.stattrak_awp",
+      "category": "skins",
+      "member": "stattrak_awp",
+      "type": "Checkbox",
+      "label": "stattrak",
+      "config_id": "stattrak_awp",
+      "column": 0,
+      "setup": "XOR(\"stattrak\"),XOR(\"stattrak_awp\")",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::AWP)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.quality_awp",
+      "category": "skins",
+      "member": "quality_awp",
+      "type": "Slider",
+      "label": "quality",
+      "config_id": "quality_awp",
+      "column": 0,
+      "setup": "XOR(\"quality\"),XOR(\"quality_awp\"),1.f,100.f,true,0,100.f,1.f,XOR(L\"%\")",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::AWP)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.seed_awp",
+      "category": "skins",
+      "member": "seed_awp",
+      "type": "Slider",
+      "label": "seed",
+      "config_id": "seed_awp",
+      "column": 0,
+      "setup": "XOR(\"seed\"),XOR(\"seed_awp\"),0.f,255.f,true,0,0.f,1.f",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::AWP)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.id_famas",
+      "category": "skins",
+      "member": "id_famas",
+      "type": "Edit",
+      "label": "paintkit id",
+      "config_id": "id_famas",
+      "column": 0,
+      "setup": "XOR(\"paintkit id\"),XOR(\"id_famas\"),3",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::FAMAS)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.stattrak_famas",
+      "category": "skins",
+      "member": "stattrak_famas",
+      "type": "Checkbox",
+      "label": "stattrak",
+      "config_id": "stattrak_famas",
+      "column": 0,
+      "setup": "XOR(\"stattrak\"),XOR(\"stattrak_famas\")",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::FAMAS)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.quality_famas",
+      "category": "skins",
+      "member": "quality_famas",
+      "type": "Slider",
+      "label": "quality",
+      "config_id": "quality_famas",
+      "column": 0,
+      "setup": "XOR(\"quality\"),XOR(\"quality_famas\"),1.f,100.f,true,0,100.f,1.f,XOR(L\"%\")",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::FAMAS)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.seed_famas",
+      "category": "skins",
+      "member": "seed_famas",
+      "type": "Slider",
+      "label": "seed",
+      "config_id": "seed_famas",
+      "column": 0,
+      "setup": "XOR(\"seed\"),XOR(\"seed_famas\"),0.f,255.f,true,0,0.f,1.f",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::FAMAS)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.id_g3sg1",
+      "category": "skins",
+      "member": "id_g3sg1",
+      "type": "Edit",
+      "label": "paintkit id",
+      "config_id": "id_g3sg1",
+      "column": 0,
+      "setup": "XOR(\"paintkit id\"),XOR(\"id_g3sg1\"),3",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::G3SG1)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.stattrak_g3sg1",
+      "category": "skins",
+      "member": "stattrak_g3sg1",
+      "type": "Checkbox",
+      "label": "stattrak",
+      "config_id": "stattrak_g3sg1",
+      "column": 0,
+      "setup": "XOR(\"stattrak\"),XOR(\"stattrak_g3sg1\")",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::G3SG1)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.quality_g3sg1",
+      "category": "skins",
+      "member": "quality_g3sg1",
+      "type": "Slider",
+      "label": "quality",
+      "config_id": "quality_g3sg1",
+      "column": 0,
+      "setup": "XOR(\"quality\"),XOR(\"quality_g3sg1\"),1.f,100.f,true,0,100.f,1.f,XOR(L\"%\")",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::G3SG1)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.seed_g3sg1",
+      "category": "skins",
+      "member": "seed_g3sg1",
+      "type": "Slider",
+      "label": "seed",
+      "config_id": "seed_g3sg1",
+      "column": 0,
+      "setup": "XOR(\"seed\"),XOR(\"seed_g3sg1\"),0.f,255.f,true,0,0.f,1.f",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::G3SG1)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.id_galil",
+      "category": "skins",
+      "member": "id_galil",
+      "type": "Edit",
+      "label": "paintkit id",
+      "config_id": "id_galil",
+      "column": 0,
+      "setup": "XOR(\"paintkit id\"),XOR(\"id_galil\"),3",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::GALIL)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.stattrak_galil",
+      "category": "skins",
+      "member": "stattrak_galil",
+      "type": "Checkbox",
+      "label": "stattrak",
+      "config_id": "stattrak_galil",
+      "column": 0,
+      "setup": "XOR(\"stattrak\"),XOR(\"stattrak_galil\")",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::GALIL)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.quality_galil",
+      "category": "skins",
+      "member": "quality_galil",
+      "type": "Slider",
+      "label": "quality",
+      "config_id": "quality_galil",
+      "column": 0,
+      "setup": "XOR(\"quality\"),XOR(\"quality_galil\"),1.f,100.f,true,0,100.f,1.f,XOR(L\"%\")",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::GALIL)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.seed_galil",
+      "category": "skins",
+      "member": "seed_galil",
+      "type": "Slider",
+      "label": "seed",
+      "config_id": "seed_galil",
+      "column": 0,
+      "setup": "XOR(\"seed\"),XOR(\"seed_galil\"),0.f,255.f,true,0,0.f,1.f",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::GALIL)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.id_m249",
+      "category": "skins",
+      "member": "id_m249",
+      "type": "Edit",
+      "label": "paintkit id",
+      "config_id": "id_m249",
+      "column": 0,
+      "setup": "XOR(\"paintkit id\"),XOR(\"id_m249\"),3",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::M249)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.stattrak_m249",
+      "category": "skins",
+      "member": "stattrak_m249",
+      "type": "Checkbox",
+      "label": "stattrak",
+      "config_id": "stattrak_m249",
+      "column": 0,
+      "setup": "XOR(\"stattrak\"),XOR(\"stattrak_m249\")",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::M249)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.quality_m249",
+      "category": "skins",
+      "member": "quality_m249",
+      "type": "Slider",
+      "label": "quality",
+      "config_id": "quality_m249",
+      "column": 0,
+      "setup": "XOR(\"quality\"),XOR(\"quality_m249\"),1.f,100.f,true,0,100.f,1.f,XOR(L\"%\")",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::M249)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.seed_m249",
+      "category": "skins",
+      "member": "seed_m249",
+      "type": "Slider",
+      "label": "seed",
+      "config_id": "seed_m249",
+      "column": 0,
+      "setup": "XOR(\"seed\"),XOR(\"seed_m249\"),0.f,255.f,true,0,0.f,1.f",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::M249)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.id_m4a4",
+      "category": "skins",
+      "member": "id_m4a4",
+      "type": "Edit",
+      "label": "paintkit id",
+      "config_id": "id_m4a4",
+      "column": 0,
+      "setup": "XOR(\"paintkit id\"),XOR(\"id_m4a4\"),3",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::M4A4)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.stattrak_m4a4",
+      "category": "skins",
+      "member": "stattrak_m4a4",
+      "type": "Checkbox",
+      "label": "stattrak",
+      "config_id": "stattrak_m4a4",
+      "column": 0,
+      "setup": "XOR(\"stattrak\"),XOR(\"stattrak_m4a4\")",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::M4A4)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.quality_m4a4",
+      "category": "skins",
+      "member": "quality_m4a4",
+      "type": "Slider",
+      "label": "quality",
+      "config_id": "quality_m4a4",
+      "column": 0,
+      "setup": "XOR(\"quality\"),XOR(\"quality_m4a4\"),1.f,100.f,true,0,100.f,1.f,XOR(L\"%\")",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::M4A4)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.seed_m4a4",
+      "category": "skins",
+      "member": "seed_m4a4",
+      "type": "Slider",
+      "label": "seed",
+      "config_id": "seed_m4a4",
+      "column": 0,
+      "setup": "XOR(\"seed\"),XOR(\"seed_m4a4\"),0.f,255.f,true,0,0.f,1.f",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::M4A4)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.id_mac10",
+      "category": "skins",
+      "member": "id_mac10",
+      "type": "Edit",
+      "label": "paintkit id",
+      "config_id": "id_mac10",
+      "column": 0,
+      "setup": "XOR(\"paintkit id\"),XOR(\"id_mac10\"),3",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::MAC10)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.stattrak_mac10",
+      "category": "skins",
+      "member": "stattrak_mac10",
+      "type": "Checkbox",
+      "label": "stattrak",
+      "config_id": "stattrak_mac10",
+      "column": 0,
+      "setup": "XOR(\"stattrak\"),XOR(\"stattrak_mac10\")",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::MAC10)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.quality_mac10",
+      "category": "skins",
+      "member": "quality_mac10",
+      "type": "Slider",
+      "label": "quality",
+      "config_id": "quality_mac10",
+      "column": 0,
+      "setup": "XOR(\"quality\"),XOR(\"quality_mac10\"),1.f,100.f,true,0,100.f,1.f,XOR(L\"%\")",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::MAC10)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.seed_mac10",
+      "category": "skins",
+      "member": "seed_mac10",
+      "type": "Slider",
+      "label": "seed",
+      "config_id": "seed_mac10",
+      "column": 0,
+      "setup": "XOR(\"seed\"),XOR(\"seed_mac10\"),0.f,255.f,true,0,0.f,1.f",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::MAC10)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.id_p90",
+      "category": "skins",
+      "member": "id_p90",
+      "type": "Edit",
+      "label": "paintkit id",
+      "config_id": "id_p90",
+      "column": 0,
+      "setup": "XOR(\"paintkit id\"),XOR(\"id_p90\"),3",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::P90)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.stattrak_p90",
+      "category": "skins",
+      "member": "stattrak_p90",
+      "type": "Checkbox",
+      "label": "stattrak",
+      "config_id": "stattrak_p90",
+      "column": 0,
+      "setup": "XOR(\"stattrak\"),XOR(\"stattrak_p90\")",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::P90)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.quality_p90",
+      "category": "skins",
+      "member": "quality_p90",
+      "type": "Slider",
+      "label": "quality",
+      "config_id": "quality_p90",
+      "column": 0,
+      "setup": "XOR(\"quality\"),XOR(\"quality_p90\"),1.f,100.f,true,0,100.f,1.f,XOR(L\"%\")",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::P90)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.seed_p90",
+      "category": "skins",
+      "member": "seed_p90",
+      "type": "Slider",
+      "label": "seed",
+      "config_id": "seed_p90",
+      "column": 0,
+      "setup": "XOR(\"seed\"),XOR(\"seed_p90\"),0.f,255.f,true,0,0.f,1.f",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::P90)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.id_ump45",
+      "category": "skins",
+      "member": "id_ump45",
+      "type": "Edit",
+      "label": "paintkit id",
+      "config_id": "id_ump45",
+      "column": 0,
+      "setup": "XOR(\"paintkit id\"),XOR(\"id_ump45\"),3",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::UMP45)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.stattrak_ump45",
+      "category": "skins",
+      "member": "stattrak_ump45",
+      "type": "Checkbox",
+      "label": "stattrak",
+      "config_id": "stattrak_ump45",
+      "column": 0,
+      "setup": "XOR(\"stattrak\"),XOR(\"stattrak_ump45\")",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::UMP45)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.quality_ump45",
+      "category": "skins",
+      "member": "quality_ump45",
+      "type": "Slider",
+      "label": "quality",
+      "config_id": "quality_ump45",
+      "column": 0,
+      "setup": "XOR(\"quality\"),XOR(\"quality_ump45\"),1.f,100.f,true,0,100.f,1.f,XOR(L\"%\")",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::UMP45)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.seed_ump45",
+      "category": "skins",
+      "member": "seed_ump45",
+      "type": "Slider",
+      "label": "seed",
+      "config_id": "seed_ump45",
+      "column": 0,
+      "setup": "XOR(\"seed\"),XOR(\"seed_ump45\"),0.f,255.f,true,0,0.f,1.f",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::UMP45)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.id_xm1014",
+      "category": "skins",
+      "member": "id_xm1014",
+      "type": "Edit",
+      "label": "paintkit id",
+      "config_id": "id_xm1014",
+      "column": 0,
+      "setup": "XOR(\"paintkit id\"),XOR(\"id_xm1014\"),3",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::XM1014)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.stattrak_xm1014",
+      "category": "skins",
+      "member": "stattrak_xm1014",
+      "type": "Checkbox",
+      "label": "stattrak",
+      "config_id": "stattrak_xm1014",
+      "column": 0,
+      "setup": "XOR(\"stattrak\"),XOR(\"stattrak_xm1014\")",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::XM1014)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.quality_xm1014",
+      "category": "skins",
+      "member": "quality_xm1014",
+      "type": "Slider",
+      "label": "quality",
+      "config_id": "quality_xm1014",
+      "column": 0,
+      "setup": "XOR(\"quality\"),XOR(\"quality_xm1014\"),1.f,100.f,true,0,100.f,1.f,XOR(L\"%\")",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::XM1014)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.seed_xm1014",
+      "category": "skins",
+      "member": "seed_xm1014",
+      "type": "Slider",
+      "label": "seed",
+      "config_id": "seed_xm1014",
+      "column": 0,
+      "setup": "XOR(\"seed\"),XOR(\"seed_xm1014\"),0.f,255.f,true,0,0.f,1.f",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::XM1014)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.id_bizon",
+      "category": "skins",
+      "member": "id_bizon",
+      "type": "Edit",
+      "label": "paintkit id",
+      "config_id": "id_bizon",
+      "column": 0,
+      "setup": "XOR(\"paintkit id\"),XOR(\"id_bizon\"),3",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::BIZON)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.stattrak_bizon",
+      "category": "skins",
+      "member": "stattrak_bizon",
+      "type": "Checkbox",
+      "label": "stattrak",
+      "config_id": "stattrak_bizon",
+      "column": 0,
+      "setup": "XOR(\"stattrak\"),XOR(\"stattrak_bizon\")",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::BIZON)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.quality_bizon",
+      "category": "skins",
+      "member": "quality_bizon",
+      "type": "Slider",
+      "label": "quality",
+      "config_id": "quality_bizon",
+      "column": 0,
+      "setup": "XOR(\"quality\"),XOR(\"quality_bizon\"),1.f,100.f,true,0,100.f,1.f,XOR(L\"%\")",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::BIZON)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.seed_bizon",
+      "category": "skins",
+      "member": "seed_bizon",
+      "type": "Slider",
+      "label": "seed",
+      "config_id": "seed_bizon",
+      "column": 0,
+      "setup": "XOR(\"seed\"),XOR(\"seed_bizon\"),0.f,255.f,true,0,0.f,1.f",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::BIZON)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.id_mag7",
+      "category": "skins",
+      "member": "id_mag7",
+      "type": "Edit",
+      "label": "paintkit id",
+      "config_id": "id_mag7",
+      "column": 0,
+      "setup": "XOR(\"paintkit id\"),XOR(\"id_mag7\"),3",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::MAG7)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.stattrak_mag7",
+      "category": "skins",
+      "member": "stattrak_mag7",
+      "type": "Checkbox",
+      "label": "stattrak",
+      "config_id": "stattrak_mag7",
+      "column": 0,
+      "setup": "XOR(\"stattrak\"),XOR(\"stattrak_mag7\")",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::MAG7)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.quality_mag7",
+      "category": "skins",
+      "member": "quality_mag7",
+      "type": "Slider",
+      "label": "quality",
+      "config_id": "quality_mag7",
+      "column": 0,
+      "setup": "XOR(\"quality\"),XOR(\"quality_mag7\"),1.f,100.f,true,0,100.f,1.f,XOR(L\"%\")",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::MAG7)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.seed_mag7",
+      "category": "skins",
+      "member": "seed_mag7",
+      "type": "Slider",
+      "label": "seed",
+      "config_id": "seed_mag7",
+      "column": 0,
+      "setup": "XOR(\"seed\"),XOR(\"seed_mag7\"),0.f,255.f,true,0,0.f,1.f",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::MAG7)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.id_negev",
+      "category": "skins",
+      "member": "id_negev",
+      "type": "Edit",
+      "label": "paintkit id",
+      "config_id": "id_negev",
+      "column": 0,
+      "setup": "XOR(\"paintkit id\"),XOR(\"id_negev\"),3",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::NEGEV)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.stattrak_negev",
+      "category": "skins",
+      "member": "stattrak_negev",
+      "type": "Checkbox",
+      "label": "stattrak",
+      "config_id": "stattrak_negev",
+      "column": 0,
+      "setup": "XOR(\"stattrak\"),XOR(\"stattrak_negev\")",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::NEGEV)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.quality_negev",
+      "category": "skins",
+      "member": "quality_negev",
+      "type": "Slider",
+      "label": "quality",
+      "config_id": "quality_negev",
+      "column": 0,
+      "setup": "XOR(\"quality\"),XOR(\"quality_negev\"),1.f,100.f,true,0,100.f,1.f,XOR(L\"%\")",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::NEGEV)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.seed_negev",
+      "category": "skins",
+      "member": "seed_negev",
+      "type": "Slider",
+      "label": "seed",
+      "config_id": "seed_negev",
+      "column": 0,
+      "setup": "XOR(\"seed\"),XOR(\"seed_negev\"),0.f,255.f,true,0,0.f,1.f",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::NEGEV)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.id_sawedoff",
+      "category": "skins",
+      "member": "id_sawedoff",
+      "type": "Edit",
+      "label": "paintkit id",
+      "config_id": "id_sawedoff",
+      "column": 0,
+      "setup": "XOR(\"paintkit id\"),XOR(\"id_sawedoff\"),3",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::SAWEDOFF)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.stattrak_sawedoff",
+      "category": "skins",
+      "member": "stattrak_sawedoff",
+      "type": "Checkbox",
+      "label": "stattrak",
+      "config_id": "stattrak_sawedoff",
+      "column": 0,
+      "setup": "XOR(\"stattrak\"),XOR(\"stattrak_sawedoff\")",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::SAWEDOFF)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.quality_sawedoff",
+      "category": "skins",
+      "member": "quality_sawedoff",
+      "type": "Slider",
+      "label": "quality",
+      "config_id": "quality_sawedoff",
+      "column": 0,
+      "setup": "XOR(\"quality\"),XOR(\"quality_sawedoff\"),1.f,100.f,true,0,100.f,1.f,XOR(L\"%\")",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::SAWEDOFF)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.seed_sawedoff",
+      "category": "skins",
+      "member": "seed_sawedoff",
+      "type": "Slider",
+      "label": "seed",
+      "config_id": "seed_sawedoff",
+      "column": 0,
+      "setup": "XOR(\"seed\"),XOR(\"seed_sawedoff\"),0.f,255.f,true,0,0.f,1.f",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::SAWEDOFF)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.id_tec9",
+      "category": "skins",
+      "member": "id_tec9",
+      "type": "Edit",
+      "label": "paintkit id",
+      "config_id": "id_tec9",
+      "column": 0,
+      "setup": "XOR(\"paintkit id\"),XOR(\"id_tec9\"),3",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::TEC9)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.stattrak_tec9",
+      "category": "skins",
+      "member": "stattrak_tec9",
+      "type": "Checkbox",
+      "label": "stattrak",
+      "config_id": "stattrak_tec9",
+      "column": 0,
+      "setup": "XOR(\"stattrak\"),XOR(\"stattrak_tec9\")",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::TEC9)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.quality_tec9",
+      "category": "skins",
+      "member": "quality_tec9",
+      "type": "Slider",
+      "label": "quality",
+      "config_id": "quality_tec9",
+      "column": 0,
+      "setup": "XOR(\"quality\"),XOR(\"quality_tec9\"),1.f,100.f,true,0,100.f,1.f,XOR(L\"%\")",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::TEC9)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.seed_tec9",
+      "category": "skins",
+      "member": "seed_tec9",
+      "type": "Slider",
+      "label": "seed",
+      "config_id": "seed_tec9",
+      "column": 0,
+      "setup": "XOR(\"seed\"),XOR(\"seed_tec9\"),0.f,255.f,true,0,0.f,1.f",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::TEC9)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.id_p2000",
+      "category": "skins",
+      "member": "id_p2000",
+      "type": "Edit",
+      "label": "paintkit id",
+      "config_id": "id_p2000",
+      "column": 0,
+      "setup": "XOR(\"paintkit id\"),XOR(\"id_p2000\"),3",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::P2000)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.stattrak_p2000",
+      "category": "skins",
+      "member": "stattrak_p2000",
+      "type": "Checkbox",
+      "label": "stattrak",
+      "config_id": "stattrak_p2000",
+      "column": 0,
+      "setup": "XOR(\"stattrak\"),XOR(\"stattrak_p2000\")",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::P2000)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.quality_p2000",
+      "category": "skins",
+      "member": "quality_p2000",
+      "type": "Slider",
+      "label": "quality",
+      "config_id": "quality_p2000",
+      "column": 0,
+      "setup": "XOR(\"quality\"),XOR(\"quality_p2000\"),1.f,100.f,true,0,100.f,1.f,XOR(L\"%\")",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::P2000)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.seed_p2000",
+      "category": "skins",
+      "member": "seed_p2000",
+      "type": "Slider",
+      "label": "seed",
+      "config_id": "seed_p2000",
+      "column": 0,
+      "setup": "XOR(\"seed\"),XOR(\"seed_p2000\"),0.f,255.f,true,0,0.f,1.f",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::P2000)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.id_mp7",
+      "category": "skins",
+      "member": "id_mp7",
+      "type": "Edit",
+      "label": "paintkit id",
+      "config_id": "id_mp7",
+      "column": 0,
+      "setup": "XOR(\"paintkit id\"),XOR(\"id_mp7\"),3",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::MP7)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.stattrak_mp7",
+      "category": "skins",
+      "member": "stattrak_mp7",
+      "type": "Checkbox",
+      "label": "stattrak",
+      "config_id": "stattrak_mp7",
+      "column": 0,
+      "setup": "XOR(\"stattrak\"),XOR(\"stattrak_mp7\")",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::MP7)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.quality_mp7",
+      "category": "skins",
+      "member": "quality_mp7",
+      "type": "Slider",
+      "label": "quality",
+      "config_id": "quality_mp7",
+      "column": 0,
+      "setup": "XOR(\"quality\"),XOR(\"quality_mp7\"),1.f,100.f,true,0,100.f,1.f,XOR(L\"%\")",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::MP7)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.seed_mp7",
+      "category": "skins",
+      "member": "seed_mp7",
+      "type": "Slider",
+      "label": "seed",
+      "config_id": "seed_mp7",
+      "column": 0,
+      "setup": "XOR(\"seed\"),XOR(\"seed_mp7\"),0.f,255.f,true,0,0.f,1.f",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::MP7)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.id_mp9",
+      "category": "skins",
+      "member": "id_mp9",
+      "type": "Edit",
+      "label": "paintkit id",
+      "config_id": "id_mp9",
+      "column": 0,
+      "setup": "XOR(\"paintkit id\"),XOR(\"id_mp9\"),3",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::MP9)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.stattrak_mp9",
+      "category": "skins",
+      "member": "stattrak_mp9",
+      "type": "Checkbox",
+      "label": "stattrak",
+      "config_id": "stattrak_mp9",
+      "column": 0,
+      "setup": "XOR(\"stattrak\"),XOR(\"stattrak_mp9\")",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::MP9)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.quality_mp9",
+      "category": "skins",
+      "member": "quality_mp9",
+      "type": "Slider",
+      "label": "quality",
+      "config_id": "quality_mp9",
+      "column": 0,
+      "setup": "XOR(\"quality\"),XOR(\"quality_mp9\"),1.f,100.f,true,0,100.f,1.f,XOR(L\"%\")",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::MP9)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.seed_mp9",
+      "category": "skins",
+      "member": "seed_mp9",
+      "type": "Slider",
+      "label": "seed",
+      "config_id": "seed_mp9",
+      "column": 0,
+      "setup": "XOR(\"seed\"),XOR(\"seed_mp9\"),0.f,255.f,true,0,0.f,1.f",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::MP9)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.id_nova",
+      "category": "skins",
+      "member": "id_nova",
+      "type": "Edit",
+      "label": "paintkit id",
+      "config_id": "id_nova",
+      "column": 0,
+      "setup": "XOR(\"paintkit id\"),XOR(\"id_nova\"),3",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::NOVA)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.stattrak_nova",
+      "category": "skins",
+      "member": "stattrak_nova",
+      "type": "Checkbox",
+      "label": "stattrak",
+      "config_id": "stattrak_nova",
+      "column": 0,
+      "setup": "XOR(\"stattrak\"),XOR(\"stattrak_nova\")",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::NOVA)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.quality_nova",
+      "category": "skins",
+      "member": "quality_nova",
+      "type": "Slider",
+      "label": "quality",
+      "config_id": "quality_nova",
+      "column": 0,
+      "setup": "XOR(\"quality\"),XOR(\"quality_nova\"),1.f,100.f,true,0,100.f,1.f,XOR(L\"%\")",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::NOVA)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.seed_nova",
+      "category": "skins",
+      "member": "seed_nova",
+      "type": "Slider",
+      "label": "seed",
+      "config_id": "seed_nova",
+      "column": 0,
+      "setup": "XOR(\"seed\"),XOR(\"seed_nova\"),0.f,255.f,true,0,0.f,1.f",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::NOVA)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.id_p250",
+      "category": "skins",
+      "member": "id_p250",
+      "type": "Edit",
+      "label": "paintkit id",
+      "config_id": "id_p250",
+      "column": 0,
+      "setup": "XOR(\"paintkit id\"),XOR(\"id_p250\"),3",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::P250)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.stattrak_p250",
+      "category": "skins",
+      "member": "stattrak_p250",
+      "type": "Checkbox",
+      "label": "stattrak",
+      "config_id": "stattrak_p250",
+      "column": 0,
+      "setup": "XOR(\"stattrak\"),XOR(\"stattrak_p250\")",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::P250)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.quality_p250",
+      "category": "skins",
+      "member": "quality_p250",
+      "type": "Slider",
+      "label": "quality",
+      "config_id": "quality_p250",
+      "column": 0,
+      "setup": "XOR(\"quality\"),XOR(\"quality_p250\"),1.f,100.f,true,0,100.f,1.f,XOR(L\"%\")",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::P250)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.seed_p250",
+      "category": "skins",
+      "member": "seed_p250",
+      "type": "Slider",
+      "label": "seed",
+      "config_id": "seed_p250",
+      "column": 0,
+      "setup": "XOR(\"seed\"),XOR(\"seed_p250\"),0.f,255.f,true,0,0.f,1.f",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::P250)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.id_scar20",
+      "category": "skins",
+      "member": "id_scar20",
+      "type": "Edit",
+      "label": "paintkit id",
+      "config_id": "id_scar20",
+      "column": 0,
+      "setup": "XOR(\"paintkit id\"),XOR(\"id_scar20\"),3",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::SCAR20)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.stattrak_scar20",
+      "category": "skins",
+      "member": "stattrak_scar20",
+      "type": "Checkbox",
+      "label": "stattrak",
+      "config_id": "stattrak_scar20",
+      "column": 0,
+      "setup": "XOR(\"stattrak\"),XOR(\"stattrak_scar20\")",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::SCAR20)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.quality_scar20",
+      "category": "skins",
+      "member": "quality_scar20",
+      "type": "Slider",
+      "label": "quality",
+      "config_id": "quality_scar20",
+      "column": 0,
+      "setup": "XOR(\"quality\"),XOR(\"quality_scar20\"),1.f,100.f,true,0,100.f,1.f,XOR(L\"%\")",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::SCAR20)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.seed_scar20",
+      "category": "skins",
+      "member": "seed_scar20",
+      "type": "Slider",
+      "label": "seed",
+      "config_id": "seed_scar20",
+      "column": 0,
+      "setup": "XOR(\"seed\"),XOR(\"seed_scar20\"),0.f,255.f,true,0,0.f,1.f",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::SCAR20)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.id_sg553",
+      "category": "skins",
+      "member": "id_sg553",
+      "type": "Edit",
+      "label": "paintkit id",
+      "config_id": "id_sg553",
+      "column": 0,
+      "setup": "XOR(\"paintkit id\"),XOR(\"id_sg553\"),3",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::SG553)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.stattrak_sg553",
+      "category": "skins",
+      "member": "stattrak_sg553",
+      "type": "Checkbox",
+      "label": "stattrak",
+      "config_id": "stattrak_sg553",
+      "column": 0,
+      "setup": "XOR(\"stattrak\"),XOR(\"stattrak_sg553\")",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::SG553)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.quality_sg553",
+      "category": "skins",
+      "member": "quality_sg553",
+      "type": "Slider",
+      "label": "quality",
+      "config_id": "quality_sg553",
+      "column": 0,
+      "setup": "XOR(\"quality\"),XOR(\"quality_sg553\"),1.f,100.f,true,0,100.f,1.f,XOR(L\"%\")",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::SG553)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.seed_sg553",
+      "category": "skins",
+      "member": "seed_sg553",
+      "type": "Slider",
+      "label": "seed",
+      "config_id": "seed_sg553",
+      "column": 0,
+      "setup": "XOR(\"seed\"),XOR(\"seed_sg553\"),0.f,255.f,true,0,0.f,1.f",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::SG553)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.id_ssg08",
+      "category": "skins",
+      "member": "id_ssg08",
+      "type": "Edit",
+      "label": "paintkit id",
+      "config_id": "id_ssg08",
+      "column": 0,
+      "setup": "XOR(\"paintkit id\"),XOR(\"id_ssg08\"),3",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::SSG08)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.stattrak_ssg08",
+      "category": "skins",
+      "member": "stattrak_ssg08",
+      "type": "Checkbox",
+      "label": "stattrak",
+      "config_id": "stattrak_ssg08",
+      "column": 0,
+      "setup": "XOR(\"stattrak\"),XOR(\"stattrak_ssg08\")",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::SSG08)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.quality_ssg08",
+      "category": "skins",
+      "member": "quality_ssg08",
+      "type": "Slider",
+      "label": "quality",
+      "config_id": "quality_ssg08",
+      "column": 0,
+      "setup": "XOR(\"quality\"),XOR(\"quality_ssg08\"),1.f,100.f,true,0,100.f,1.f,XOR(L\"%\")",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::SSG08)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.seed_ssg08",
+      "category": "skins",
+      "member": "seed_ssg08",
+      "type": "Slider",
+      "label": "seed",
+      "config_id": "seed_ssg08",
+      "column": 0,
+      "setup": "XOR(\"seed\"),XOR(\"seed_ssg08\"),0.f,255.f,true,0,0.f,1.f",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::SSG08)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.id_m4a1s",
+      "category": "skins",
+      "member": "id_m4a1s",
+      "type": "Edit",
+      "label": "paintkit id",
+      "config_id": "id_m4a1s",
+      "column": 0,
+      "setup": "XOR(\"paintkit id\"),XOR(\"id_m4a1s\"),3",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::M4A1S)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.stattrak_m4a1s",
+      "category": "skins",
+      "member": "stattrak_m4a1s",
+      "type": "Checkbox",
+      "label": "stattrak",
+      "config_id": "stattrak_m4a1s",
+      "column": 0,
+      "setup": "XOR(\"stattrak\"),XOR(\"stattrak_m4a1s\")",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::M4A1S)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.quality_m4a1s",
+      "category": "skins",
+      "member": "quality_m4a1s",
+      "type": "Slider",
+      "label": "quality",
+      "config_id": "quality_m4a1s",
+      "column": 0,
+      "setup": "XOR(\"quality\"),XOR(\"quality_m4a1s\"),1.f,100.f,true,0,100.f,1.f,XOR(L\"%\")",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::M4A1S)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.seed_m4a1s",
+      "category": "skins",
+      "member": "seed_m4a1s",
+      "type": "Slider",
+      "label": "seed",
+      "config_id": "seed_m4a1s",
+      "column": 0,
+      "setup": "XOR(\"seed\"),XOR(\"seed_m4a1s\"),0.f,255.f,true,0,0.f,1.f",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::M4A1S)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.id_usps",
+      "category": "skins",
+      "member": "id_usps",
+      "type": "Edit",
+      "label": "paintkit id",
+      "config_id": "id_usps",
+      "column": 0,
+      "setup": "XOR(\"paintkit id\"),XOR(\"id_usps\"),3",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::USPS)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.stattrak_usps",
+      "category": "skins",
+      "member": "stattrak_usps",
+      "type": "Checkbox",
+      "label": "stattrak",
+      "config_id": "stattrak_usps",
+      "column": 0,
+      "setup": "XOR(\"stattrak\"),XOR(\"stattrak_usps\")",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::USPS)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.quality_usps",
+      "category": "skins",
+      "member": "quality_usps",
+      "type": "Slider",
+      "label": "quality",
+      "config_id": "quality_usps",
+      "column": 0,
+      "setup": "XOR(\"quality\"),XOR(\"quality_usps\"),1.f,100.f,true,0,100.f,1.f,XOR(L\"%\")",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::USPS)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.seed_usps",
+      "category": "skins",
+      "member": "seed_usps",
+      "type": "Slider",
+      "label": "seed",
+      "config_id": "seed_usps",
+      "column": 0,
+      "setup": "XOR(\"seed\"),XOR(\"seed_usps\"),0.f,255.f,true,0,0.f,1.f",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::USPS)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.id_cz75a",
+      "category": "skins",
+      "member": "id_cz75a",
+      "type": "Edit",
+      "label": "paintkit id",
+      "config_id": "id_cz75a",
+      "column": 0,
+      "setup": "XOR(\"paintkit id\"),XOR(\"id_cz75a\"),3",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::CZ75A)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.stattrak_cz75a",
+      "category": "skins",
+      "member": "stattrak_cz75a",
+      "type": "Checkbox",
+      "label": "stattrak",
+      "config_id": "stattrak_cz75a",
+      "column": 0,
+      "setup": "XOR(\"stattrak\"),XOR(\"stattrak_cz75a\")",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::CZ75A)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.quality_cz75a",
+      "category": "skins",
+      "member": "quality_cz75a",
+      "type": "Slider",
+      "label": "quality",
+      "config_id": "quality_cz75a",
+      "column": 0,
+      "setup": "XOR(\"quality\"),XOR(\"quality_cz75a\"),1.f,100.f,true,0,100.f,1.f,XOR(L\"%\")",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::CZ75A)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.seed_cz75a",
+      "category": "skins",
+      "member": "seed_cz75a",
+      "type": "Slider",
+      "label": "seed",
+      "config_id": "seed_cz75a",
+      "column": 0,
+      "setup": "XOR(\"seed\"),XOR(\"seed_cz75a\"),0.f,255.f,true,0,0.f,1.f",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::CZ75A)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.id_revolver",
+      "category": "skins",
+      "member": "id_revolver",
+      "type": "Edit",
+      "label": "paintkit id",
+      "config_id": "id_revolver",
+      "column": 0,
+      "setup": "XOR(\"paintkit id\"),XOR(\"id_revolver\"),3",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::REVOLVER)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.stattrak_revolver",
+      "category": "skins",
+      "member": "stattrak_revolver",
+      "type": "Checkbox",
+      "label": "stattrak",
+      "config_id": "stattrak_revolver",
+      "column": 0,
+      "setup": "XOR(\"stattrak\"),XOR(\"stattrak_revolver\")",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::REVOLVER)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.quality_revolver",
+      "category": "skins",
+      "member": "quality_revolver",
+      "type": "Slider",
+      "label": "quality",
+      "config_id": "quality_revolver",
+      "column": 0,
+      "setup": "XOR(\"quality\"),XOR(\"quality_revolver\"),1.f,100.f,true,0,100.f,1.f,XOR(L\"%\")",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::REVOLVER)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.seed_revolver",
+      "category": "skins",
+      "member": "seed_revolver",
+      "type": "Slider",
+      "label": "seed",
+      "config_id": "seed_revolver",
+      "column": 0,
+      "setup": "XOR(\"seed\"),XOR(\"seed_revolver\"),0.f,255.f,true,0,0.f,1.f",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::REVOLVER)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.id_bayonet",
+      "category": "skins",
+      "member": "id_bayonet",
+      "type": "Edit",
+      "label": "paintkit id",
+      "config_id": "id_bayonet",
+      "column": 0,
+      "setup": "XOR(\"paintkit id\"),XOR(\"id_bayonet\"),3",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::KNIFE_BAYONET)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.stattrak_bayonet",
+      "category": "skins",
+      "member": "stattrak_bayonet",
+      "type": "Checkbox",
+      "label": "stattrak",
+      "config_id": "stattrak_bayonet",
+      "column": 0,
+      "setup": "XOR(\"stattrak\"),XOR(\"stattrak_bayonet\")",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::KNIFE_BAYONET)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.quality_bayonet",
+      "category": "skins",
+      "member": "quality_bayonet",
+      "type": "Slider",
+      "label": "quality",
+      "config_id": "quality_bayonet",
+      "column": 0,
+      "setup": "XOR(\"quality\"),XOR(\"quality_bayonet\"),1.f,100.f,true,0,100.f,1.f,XOR(L\"%\")",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::KNIFE_BAYONET)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.seed_bayonet",
+      "category": "skins",
+      "member": "seed_bayonet",
+      "type": "Slider",
+      "label": "seed",
+      "config_id": "seed_bayonet",
+      "column": 0,
+      "setup": "XOR(\"seed\"),XOR(\"seed_bayonet\"),0.f,255.f,true,0,0.f,1.f",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::KNIFE_BAYONET)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.id_flip",
+      "category": "skins",
+      "member": "id_flip",
+      "type": "Edit",
+      "label": "paintkit id",
+      "config_id": "id_flip",
+      "column": 0,
+      "setup": "XOR(\"paintkit id\"),XOR(\"id_flip\"),3",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::KNIFE_FLIP)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.stattrak_flip",
+      "category": "skins",
+      "member": "stattrak_flip",
+      "type": "Checkbox",
+      "label": "stattrak",
+      "config_id": "stattrak_flip",
+      "column": 0,
+      "setup": "XOR(\"stattrak\"),XOR(\"stattrak_flip\")",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::KNIFE_FLIP)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.quality_flip",
+      "category": "skins",
+      "member": "quality_flip",
+      "type": "Slider",
+      "label": "quality",
+      "config_id": "quality_flip",
+      "column": 0,
+      "setup": "XOR(\"quality\"),XOR(\"quality_flip\"),1.f,100.f,true,0,100.f,1.f,XOR(L\"%\")",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::KNIFE_FLIP)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.seed_flip",
+      "category": "skins",
+      "member": "seed_flip",
+      "type": "Slider",
+      "label": "seed",
+      "config_id": "seed_flip",
+      "column": 0,
+      "setup": "XOR(\"seed\"),XOR(\"seed_flip\"),0.f,255.f,true,0,0.f,1.f",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::KNIFE_FLIP)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.id_gut",
+      "category": "skins",
+      "member": "id_gut",
+      "type": "Edit",
+      "label": "paintkit id",
+      "config_id": "id_gut",
+      "column": 0,
+      "setup": "XOR(\"paintkit id\"),XOR(\"id_gut\"),3",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::KNIFE_GUT)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.stattrak_gut",
+      "category": "skins",
+      "member": "stattrak_gut",
+      "type": "Checkbox",
+      "label": "stattrak",
+      "config_id": "stattrak_gut",
+      "column": 0,
+      "setup": "XOR(\"stattrak\"),XOR(\"stattrak_gut\")",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::KNIFE_GUT)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.quality_gut",
+      "category": "skins",
+      "member": "quality_gut",
+      "type": "Slider",
+      "label": "quality",
+      "config_id": "quality_gut",
+      "column": 0,
+      "setup": "XOR(\"quality\"),XOR(\"quality_gut\"),1.f,100.f,true,0,100.f,1.f,XOR(L\"%\")",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::KNIFE_GUT)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.seed_gut",
+      "category": "skins",
+      "member": "seed_gut",
+      "type": "Slider",
+      "label": "seed",
+      "config_id": "seed_gut",
+      "column": 0,
+      "setup": "XOR(\"seed\"),XOR(\"seed_gut\"),0.f,255.f,true,0,0.f,1.f",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::KNIFE_GUT)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.id_karambit",
+      "category": "skins",
+      "member": "id_karambit",
+      "type": "Edit",
+      "label": "paintkit id",
+      "config_id": "id_karambit",
+      "column": 0,
+      "setup": "XOR(\"paintkit id\"),XOR(\"id_karambit\"),3",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::KNIFE_KARAMBIT)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.stattrak_karambit",
+      "category": "skins",
+      "member": "stattrak_karambit",
+      "type": "Checkbox",
+      "label": "stattrak",
+      "config_id": "stattrak_karambit",
+      "column": 0,
+      "setup": "XOR(\"stattrak\"),XOR(\"stattrak_karambit\")",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::KNIFE_KARAMBIT)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.quality_karambit",
+      "category": "skins",
+      "member": "quality_karambit",
+      "type": "Slider",
+      "label": "quality",
+      "config_id": "quality_karambit",
+      "column": 0,
+      "setup": "XOR(\"quality\"),XOR(\"quality_karambit\"),1.f,100.f,true,0,100.f,1.f,XOR(L\"%\")",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::KNIFE_KARAMBIT)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.seed_karambit",
+      "category": "skins",
+      "member": "seed_karambit",
+      "type": "Slider",
+      "label": "seed",
+      "config_id": "seed_karambit",
+      "column": 0,
+      "setup": "XOR(\"seed\"),XOR(\"seed_karambit\"),0.f,255.f,true,0,0.f,1.f",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::KNIFE_KARAMBIT)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.id_m9",
+      "category": "skins",
+      "member": "id_m9",
+      "type": "Edit",
+      "label": "paintkit id",
+      "config_id": "id_m9",
+      "column": 0,
+      "setup": "XOR(\"paintkit id\"),XOR(\"id_m9\"),3",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::KNIFE_M9_BAYONET)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.stattrak_m9",
+      "category": "skins",
+      "member": "stattrak_m9",
+      "type": "Checkbox",
+      "label": "stattrak",
+      "config_id": "stattrak_m9",
+      "column": 0,
+      "setup": "XOR(\"stattrak\"),XOR(\"stattrak_m9\")",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::KNIFE_M9_BAYONET)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.quality_m9",
+      "category": "skins",
+      "member": "quality_m9",
+      "type": "Slider",
+      "label": "quality",
+      "config_id": "quality_m9",
+      "column": 0,
+      "setup": "XOR(\"quality\"),XOR(\"quality_m9\"),1.f,100.f,true,0,100.f,1.f,XOR(L\"%\")",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::KNIFE_M9_BAYONET)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.seed_m9",
+      "category": "skins",
+      "member": "seed_m9",
+      "type": "Slider",
+      "label": "seed",
+      "config_id": "seed_m9",
+      "column": 0,
+      "setup": "XOR(\"seed\"),XOR(\"seed_m9\"),0.f,255.f,true,0,0.f,1.f",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::KNIFE_M9_BAYONET)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.id_huntsman",
+      "category": "skins",
+      "member": "id_huntsman",
+      "type": "Edit",
+      "label": "paintkit id",
+      "config_id": "id_huntsman",
+      "column": 0,
+      "setup": "XOR(\"paintkit id\"),XOR(\"id_huntsman\"),3",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::KNIFE_HUNTSMAN)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.stattrak_huntsman",
+      "category": "skins",
+      "member": "stattrak_huntsman",
+      "type": "Checkbox",
+      "label": "stattrak",
+      "config_id": "stattrak_huntsman",
+      "column": 0,
+      "setup": "XOR(\"stattrak\"),XOR(\"stattrak_huntsman\")",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::KNIFE_HUNTSMAN)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.quality_huntsman",
+      "category": "skins",
+      "member": "quality_huntsman",
+      "type": "Slider",
+      "label": "quality",
+      "config_id": "quality_huntsman",
+      "column": 0,
+      "setup": "XOR(\"quality\"),XOR(\"quality_huntsman\"),1.f,100.f,true,0,100.f,1.f,XOR(L\"%\")",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::KNIFE_HUNTSMAN)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.seed_huntsman",
+      "category": "skins",
+      "member": "seed_huntsman",
+      "type": "Slider",
+      "label": "seed",
+      "config_id": "seed_huntsman",
+      "column": 0,
+      "setup": "XOR(\"seed\"),XOR(\"seed_huntsman\"),0.f,255.f,true,0,0.f,1.f",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::KNIFE_HUNTSMAN)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.id_falchion",
+      "category": "skins",
+      "member": "id_falchion",
+      "type": "Edit",
+      "label": "paintkit id",
+      "config_id": "id_falchion",
+      "column": 0,
+      "setup": "XOR(\"paintkit id\"),XOR(\"id_falchion\"),3",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::KNIFE_FALCHION)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.stattrak_falchion",
+      "category": "skins",
+      "member": "stattrak_falchion",
+      "type": "Checkbox",
+      "label": "stattrak",
+      "config_id": "stattrak_falchion",
+      "column": 0,
+      "setup": "XOR(\"stattrak\"),XOR(\"stattrak_falchion\")",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::KNIFE_FALCHION)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.quality_falchion",
+      "category": "skins",
+      "member": "quality_falchion",
+      "type": "Slider",
+      "label": "quality",
+      "config_id": "quality_falchion",
+      "column": 0,
+      "setup": "XOR(\"quality\"),XOR(\"quality_falchion\"),1.f,100.f,true,0,100.f,1.f,XOR(L\"%\")",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::KNIFE_FALCHION)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.seed_falchion",
+      "category": "skins",
+      "member": "seed_falchion",
+      "type": "Slider",
+      "label": "seed",
+      "config_id": "seed_falchion",
+      "column": 0,
+      "setup": "XOR(\"seed\"),XOR(\"seed_falchion\"),0.f,255.f,true,0,0.f,1.f",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::KNIFE_FALCHION)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.id_bowie",
+      "category": "skins",
+      "member": "id_bowie",
+      "type": "Edit",
+      "label": "paintkit id",
+      "config_id": "id_bowie",
+      "column": 0,
+      "setup": "XOR(\"paintkit id\"),XOR(\"id_bowie\"),3",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::KNIFE_BOWIE)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.stattrak_bowie",
+      "category": "skins",
+      "member": "stattrak_bowie",
+      "type": "Checkbox",
+      "label": "stattrak",
+      "config_id": "stattrak_bowie",
+      "column": 0,
+      "setup": "XOR(\"stattrak\"),XOR(\"stattrak_bowie\")",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::KNIFE_BOWIE)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.quality_bowie",
+      "category": "skins",
+      "member": "quality_bowie",
+      "type": "Slider",
+      "label": "quality",
+      "config_id": "quality_bowie",
+      "column": 0,
+      "setup": "XOR(\"quality\"),XOR(\"quality_bowie\"),1.f,100.f,true,0,100.f,1.f,XOR(L\"%\")",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::KNIFE_BOWIE)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.seed_bowie",
+      "category": "skins",
+      "member": "seed_bowie",
+      "type": "Slider",
+      "label": "seed",
+      "config_id": "seed_bowie",
+      "column": 0,
+      "setup": "XOR(\"seed\"),XOR(\"seed_bowie\"),0.f,255.f,true,0,0.f,1.f",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::KNIFE_BOWIE)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.id_butterfly",
+      "category": "skins",
+      "member": "id_butterfly",
+      "type": "Edit",
+      "label": "paintkit id",
+      "config_id": "id_butterfly",
+      "column": 0,
+      "setup": "XOR(\"paintkit id\"),XOR(\"id_butterfly\"),3",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::KNIFE_BUTTERFLY)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.stattrak_butterfly",
+      "category": "skins",
+      "member": "stattrak_butterfly",
+      "type": "Checkbox",
+      "label": "stattrak",
+      "config_id": "stattrak_butterfly",
+      "column": 0,
+      "setup": "XOR(\"stattrak\"),XOR(\"stattrak_butterfly\")",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::KNIFE_BUTTERFLY)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.quality_butterfly",
+      "category": "skins",
+      "member": "quality_butterfly",
+      "type": "Slider",
+      "label": "quality",
+      "config_id": "quality_butterfly",
+      "column": 0,
+      "setup": "XOR(\"quality\"),XOR(\"quality_butterfly\"),1.f,100.f,true,0,100.f,1.f,XOR(L\"%\")",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::KNIFE_BUTTERFLY)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.seed_butterfly",
+      "category": "skins",
+      "member": "seed_butterfly",
+      "type": "Slider",
+      "label": "seed",
+      "config_id": "seed_butterfly",
+      "column": 0,
+      "setup": "XOR(\"seed\"),XOR(\"seed_butterfly\"),0.f,255.f,true,0,0.f,1.f",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::KNIFE_BUTTERFLY)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.id_daggers",
+      "category": "skins",
+      "member": "id_daggers",
+      "type": "Edit",
+      "label": "paintkit id",
+      "config_id": "id_daggers",
+      "column": 0,
+      "setup": "XOR(\"paintkit id\"),XOR(\"id_daggers\"),3",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::KNIFE_SHADOW_DAGGERS)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.stattrak_daggers",
+      "category": "skins",
+      "member": "stattrak_daggers",
+      "type": "Checkbox",
+      "label": "stattrak",
+      "config_id": "stattrak_daggers",
+      "column": 0,
+      "setup": "XOR(\"stattrak\"),XOR(\"stattrak_daggers\")",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::KNIFE_SHADOW_DAGGERS)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.quality_daggers",
+      "category": "skins",
+      "member": "quality_daggers",
+      "type": "Slider",
+      "label": "quality",
+      "config_id": "quality_daggers",
+      "column": 0,
+      "setup": "XOR(\"quality\"),XOR(\"quality_daggers\"),1.f,100.f,true,0,100.f,1.f,XOR(L\"%\")",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::KNIFE_SHADOW_DAGGERS)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.seed_daggers",
+      "category": "skins",
+      "member": "seed_daggers",
+      "type": "Slider",
+      "label": "seed",
+      "config_id": "seed_daggers",
+      "column": 0,
+      "setup": "XOR(\"seed\"),XOR(\"seed_daggers\"),0.f,255.f,true,0,0.f,1.f",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)",
+        "AddShowCallback(callbacks::KNIFE_SHADOW_DAGGERS)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "SkinsTab.knife",
+      "category": "skins",
+      "member": "knife",
+      "type": "Dropdown",
+      "label": "knife model",
+      "config_id": "skins_knife_model",
+      "column": 1,
+      "setup": "XOR(\"knife model\"),XOR(\"skins_knife_model\"),{XOR(\"off\"),XOR(\"bayonet\"),XOR(\"bowie\"),XOR(\"butterfly\"),XOR(\"falchion\"),XOR(\"flip\"),XOR(\"gut\"),XOR(\"huntsman\"),XOR(\"karambit\"),XOR(\"m9 bayonet\"),XOR(\"daggers\")}",
+      "calls": [
+        "SetCallback(callbacks::SkinUpdate)"
+      ],
+      "choices": [
+        "off",
+        "bayonet",
+        "bowie",
+        "butterfly",
+        "falchion",
+        "flip",
+        "gut",
+        "huntsman",
+        "karambit",
+        "m9 bayonet",
+        "daggers"
+      ]
+    },
+    {
+      "key": "SkinsTab.glove",
+      "category": "skins",
+      "member": "glove",
+      "type": "Dropdown",
+      "label": "glove model",
+      "config_id": "skins_glove_model",
+      "column": 1,
+      "setup": "XOR(\"glove model\"),XOR(\"skins_glove_model\"),{XOR(\"off\"),XOR(\"bloodhound\"),XOR(\"sport\"),XOR(\"driver\"),XOR(\"handwraps\"),XOR(\"moto\"),XOR(\"specialist\")}",
+      "calls": [
+        "SetCallback(callbacks::ForceFullUpdate)"
+      ],
+      "choices": [
+        "off",
+        "bloodhound",
+        "sport",
+        "driver",
+        "handwraps",
+        "moto",
+        "specialist"
+      ]
+    },
+    {
+      "key": "SkinsTab.glove_id",
+      "category": "skins",
+      "member": "glove_id",
+      "type": "Edit",
+      "label": "glove paintkit id",
+      "config_id": "skins_glove_id",
+      "column": 1,
+      "setup": "XOR(\"glove paintkit id\"),XOR(\"skins_glove_id\"),2",
+      "calls": [
+        "SetCallback(callbacks::ForceFullUpdate)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "MiscTab.buy1",
+      "category": "misc",
+      "member": "buy1",
+      "type": "MultiDropdown",
+      "label": "auto buy items",
+      "config_id": "auto_buy1",
+      "column": 0,
+      "setup": "XOR(\"auto buy items\"),XOR(\"auto_buy1\"),{XOR(\"galilar\"),XOR(\"famas\"),XOR(\"ak47\"),XOR(\"m4a1\"),XOR(\"m4a1_silencer\"),XOR(\"ssg08\"),XOR(\"aug\"),XOR(\"sg556\"),XOR(\"awp\"),XOR(\"scar20\"),XOR(\"g3sg1\"),XOR(\"nova\"),XOR(\"xm1014\"),XOR(\"mag7\"),XOR(\"m249\"),XOR(\"negev\"),XOR(\"mac10\"),XOR(\"mp9\"),XOR(\"mp7\"),XOR(\"ump45\"),XOR(\"p90\"),XOR(\"bizon\"),}",
+      "calls": [],
+      "choices": [
+        "galilar",
+        "famas",
+        "ak47",
+        "m4a1",
+        "m4a1_silencer",
+        "ssg08",
+        "aug",
+        "sg556",
+        "awp",
+        "scar20",
+        "g3sg1",
+        "nova",
+        "xm1014",
+        "mag7",
+        "m249",
+        "negev",
+        "mac10",
+        "mp9",
+        "mp7",
+        "ump45",
+        "p90",
+        "bizon"
+      ]
+    },
+    {
+      "key": "MiscTab.buy2",
+      "category": "misc",
+      "member": "buy2",
+      "type": "MultiDropdown",
+      "label": "",
+      "config_id": "auto_buy2",
+      "column": 0,
+      "setup": "\"\",XOR(\"auto_buy2\"),{XOR(\"glock\"),XOR(\"hkp2000\"),XOR(\"usp_silencer\"),XOR(\"elite\"),XOR(\"p250\"),XOR(\"tec9\"),XOR(\"fn57\"),XOR(\"deagle\"),},false",
+      "calls": [],
+      "choices": [
+        "glock",
+        "hkp2000",
+        "usp_silencer",
+        "elite",
+        "p250",
+        "tec9",
+        "fn57",
+        "deagle"
+      ]
+    },
+    {
+      "key": "MiscTab.buy3",
+      "category": "misc",
+      "member": "buy3",
+      "type": "MultiDropdown",
+      "label": "",
+      "config_id": "auto_buy3",
+      "column": 0,
+      "setup": "\"\",XOR(\"auto_buy3\"),{XOR(\"vest\"),XOR(\"vesthelm\"),XOR(\"taser\"),XOR(\"defuser\"),XOR(\"heavyarmor\"),XOR(\"molotov\"),XOR(\"incgrenade\"),XOR(\"decoy\"),XOR(\"flashbang\"),XOR(\"hegrenade\"),XOR(\"smokegrenade\"),},false",
+      "calls": [],
+      "choices": [
+        "vest",
+        "vesthelm",
+        "taser",
+        "defuser",
+        "heavyarmor",
+        "molotov",
+        "incgrenade",
+        "decoy",
+        "flashbang",
+        "hegrenade",
+        "smokegrenade"
+      ]
+    },
+    {
+      "key": "MiscTab.notifications",
+      "category": "misc",
+      "member": "notifications",
+      "type": "MultiDropdown",
+      "label": "notifications",
+      "config_id": "notifications",
+      "column": 0,
+      "setup": "XOR(\"notifications\"),XOR(\"notifications\"),{XOR(\"matchmaking\"),XOR(\"damage\"),XOR(\"purchases\"),XOR(\"bomb\"),XOR(\"defuse\")}",
+      "calls": [],
+      "choices": [
+        "matchmaking",
+        "damage",
+        "purchases",
+        "bomb",
+        "defuse"
+      ]
+    },
+    {
+      "key": "MiscTab.last_tick_defuse",
+      "category": "misc",
+      "member": "last_tick_defuse",
+      "type": "Keybind",
+      "label": "last tick defuse",
+      "config_id": "last_tick_defuse",
+      "column": 0,
+      "setup": "XOR(\"last tick defuse\"),XOR(\"last_tick_defuse\")",
+      "calls": [],
+      "choices": []
+    },
+    {
+      "key": "MiscTab.fake_latency",
+      "category": "misc",
+      "member": "fake_latency",
+      "type": "Keybind",
+      "label": "fake latency",
+      "config_id": "fake_latency",
+      "column": 0,
+      "setup": "XOR(\"fake latency\"),XOR(\"fake_latency\")",
+      "calls": [
+        "SetToggleCallback(callbacks::ToggleFakeLatency)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "MiscTab.fake_latency_amt",
+      "category": "misc",
+      "member": "fake_latency_amt",
+      "type": "Slider",
+      "label": "",
+      "config_id": "fake_latency_amt",
+      "column": 0,
+      "setup": "\"\",XOR(\"fake_latency_amt\"),50.f,800.f,false,0,200.f,50.f,XOR(L\"ms\")",
+      "calls": [],
+      "choices": []
+    },
+    {
+      "key": "MiscTab.autoaccept",
+      "category": "misc",
+      "member": "autoaccept",
+      "type": "Checkbox",
+      "label": "auto-accept matchmaking",
+      "config_id": "autoaccept",
+      "column": 1,
+      "setup": "XOR(\"auto-accept matchmaking\"),XOR(\"autoaccept\")",
+      "calls": [],
+      "choices": []
+    },
+    {
+      "key": "MiscTab.unlock",
+      "category": "misc",
+      "member": "unlock",
+      "type": "Checkbox",
+      "label": "unlock inventory in-game",
+      "config_id": "unlock_inventory",
+      "column": 1,
+      "setup": "XOR(\"unlock inventory in-game\"),XOR(\"unlock_inventory\")",
+      "calls": [],
+      "choices": []
+    },
+    {
+      "key": "MiscTab.hitmarker",
+      "category": "misc",
+      "member": "hitmarker",
+      "type": "Checkbox",
+      "label": "hitmarker",
+      "config_id": "hitmarker",
+      "column": 1,
+      "setup": "XOR(\"hitmarker\"),XOR(\"hitmarker\")",
+      "calls": [],
+      "choices": []
+    },
+    {
+      "key": "MiscTab.ragdoll_force",
+      "category": "misc",
+      "member": "ragdoll_force",
+      "type": "Checkbox",
+      "label": "ragdoll force",
+      "config_id": "ragdoll_force",
+      "column": 1,
+      "setup": "XOR(\"ragdoll force\"),XOR(\"ragdoll_force\")",
+      "calls": [],
+      "choices": []
+    },
+    {
+      "key": "MiscTab.ranks",
+      "category": "misc",
+      "member": "ranks",
+      "type": "Checkbox",
+      "label": "reveal matchmaking ranks",
+      "config_id": "ranks",
+      "column": 1,
+      "setup": "XOR(\"reveal matchmaking ranks\"),XOR(\"ranks\")",
+      "calls": [],
+      "choices": []
+    },
+    {
+      "key": "MiscTab.killfeed",
+      "category": "misc",
+      "member": "killfeed",
+      "type": "Checkbox",
+      "label": "preserve killfeed",
+      "config_id": "killfeed",
+      "column": 1,
+      "setup": "XOR(\"preserve killfeed\"),XOR(\"killfeed\")",
+      "calls": [
+        "SetCallback(callbacks::ToggleKillfeed)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "MiscTab.clantag",
+      "category": "misc",
+      "member": "clantag",
+      "type": "Checkbox",
+      "label": "clantag",
+      "config_id": "clantag",
+      "column": 1,
+      "setup": "XOR(\"clantag\"),XOR(\"clantag\")",
+      "calls": [],
+      "choices": []
+    },
+    {
+      "key": "ConfigTab.menu_color",
+      "category": "config",
+      "member": "menu_color",
+      "type": "Colorpicker",
+      "label": "menu color",
+      "config_id": "menu_color",
+      "column": 0,
+      "setup": "XOR(\"menu color\"),XOR(\"menu_color\"),theme::teal(),&g_gui.m_color",
+      "calls": [],
+      "choices": []
+    },
+    {
+      "key": "ConfigTab.mode",
+      "category": "config",
+      "member": "mode",
+      "type": "Dropdown",
+      "label": "safety mode",
+      "config_id": "mode",
+      "column": 1,
+      "setup": "XOR(\"safety mode\"),XOR(\"mode\"),{XOR(\"matchmaking\"),XOR(\"no-spread\")}",
+      "calls": [],
+      "choices": [
+        "matchmaking",
+        "no-spread"
+      ]
+    },
+    {
+      "key": "ConfigTab.config",
+      "category": "config",
+      "member": "config",
+      "type": "Dropdown",
+      "label": "configuration",
+      "config_id": "cfg",
+      "column": 1,
+      "setup": "XOR(\"configuration\"),XOR(\"cfg\"),{XOR(\"1\"),XOR(\"2\"),XOR(\"3\"),XOR(\"4\"),XOR(\"5\"),XOR(\"6\")}",
+      "calls": [
+        "RemoveFlags(ElementFlags::SAVE)"
+      ],
+      "choices": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6"
+      ]
+    },
+    {
+      "key": "ConfigTab.key1",
+      "category": "config",
+      "member": "key1",
+      "type": "Keybind",
+      "label": "configuration key 1",
+      "config_id": "cfg_key1",
+      "column": 1,
+      "setup": "XOR(\"configuration key 1\"),XOR(\"cfg_key1\")",
+      "calls": [
+        "RemoveFlags(ElementFlags::SAVE)",
+        "SetCallback(callbacks::SaveHotkeys)",
+        "AddShowCallback(callbacks::IsConfig1)",
+        "SetToggleCallback(callbacks::ConfigLoad1)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "ConfigTab.key2",
+      "category": "config",
+      "member": "key2",
+      "type": "Keybind",
+      "label": "configuration key 2",
+      "config_id": "cfg_key2",
+      "column": 1,
+      "setup": "XOR(\"configuration key 2\"),XOR(\"cfg_key2\")",
+      "calls": [
+        "RemoveFlags(ElementFlags::SAVE)",
+        "SetCallback(callbacks::SaveHotkeys)",
+        "AddShowCallback(callbacks::IsConfig2)",
+        "SetToggleCallback(callbacks::ConfigLoad2)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "ConfigTab.key3",
+      "category": "config",
+      "member": "key3",
+      "type": "Keybind",
+      "label": "configuration key 3",
+      "config_id": "cfg_key3",
+      "column": 1,
+      "setup": "XOR(\"configuration key 3\"),XOR(\"cfg_key3\")",
+      "calls": [
+        "RemoveFlags(ElementFlags::SAVE)",
+        "SetCallback(callbacks::SaveHotkeys)",
+        "AddShowCallback(callbacks::IsConfig3)",
+        "SetToggleCallback(callbacks::ConfigLoad3)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "ConfigTab.key4",
+      "category": "config",
+      "member": "key4",
+      "type": "Keybind",
+      "label": "configuration key 4",
+      "config_id": "cfg_key4",
+      "column": 1,
+      "setup": "XOR(\"configuration key 4\"),XOR(\"cfg_key4\")",
+      "calls": [
+        "RemoveFlags(ElementFlags::SAVE)",
+        "SetCallback(callbacks::SaveHotkeys)",
+        "AddShowCallback(callbacks::IsConfig4)",
+        "SetToggleCallback(callbacks::ConfigLoad4)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "ConfigTab.key5",
+      "category": "config",
+      "member": "key5",
+      "type": "Keybind",
+      "label": "configuration key 5",
+      "config_id": "cfg_key5",
+      "column": 1,
+      "setup": "XOR(\"configuration key 5\"),XOR(\"cfg_key5\")",
+      "calls": [
+        "RemoveFlags(ElementFlags::SAVE)",
+        "SetCallback(callbacks::SaveHotkeys)",
+        "AddShowCallback(callbacks::IsConfig5)",
+        "SetToggleCallback(callbacks::ConfigLoad5)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "ConfigTab.key6",
+      "category": "config",
+      "member": "key6",
+      "type": "Keybind",
+      "label": "configuration key 6",
+      "config_id": "cfg_key6",
+      "column": 1,
+      "setup": "XOR(\"configuration key 6\"),XOR(\"cfg_key6\")",
+      "calls": [
+        "RemoveFlags(ElementFlags::SAVE)",
+        "SetCallback(callbacks::SaveHotkeys)",
+        "AddShowCallback(callbacks::IsConfig6)",
+        "SetToggleCallback(callbacks::ConfigLoad6)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "ConfigTab.save",
+      "category": "config",
+      "member": "save",
+      "type": "Button",
+      "label": "save",
+      "config_id": null,
+      "column": 1,
+      "setup": "XOR(\"save\")",
+      "calls": [
+        "SetCallback(callbacks::ConfigSave)"
+      ],
+      "choices": []
+    },
+    {
+      "key": "ConfigTab.load",
+      "category": "config",
+      "member": "load",
+      "type": "Button",
+      "label": "load",
+      "config_id": null,
+      "column": 1,
+      "setup": "XOR(\"load\")",
+      "calls": [
+        "SetCallback(callbacks::ConfigLoad)"
+      ],
+      "choices": []
+    }
+  ]
+}
